@@ -1,4 +1,5 @@
 let currentCarArray = [];
+let catName ='';
 
 function setCarID(id) {
     localStorage.setItem("carID", id);
@@ -15,12 +16,12 @@ function showCarList(){
             <div onclick="setCarID(${car.id})" class="list-group-item list-group-item-action cursor-active">
                 <div class="row">
                     <div class="col-3">
-                        <img src="${car.imgSrc}" alt="${car.description}" class="img-thumbnail">
+                        <img src="${car.image}" alt="${car.description}" class="img-thumbnail">
                     </div>
                     <div class="col">
                         <div class="d-flex w-100 justify-content-between">
-                            <h4 class="mb-1">${car.name}</h4>
-                            <small class="text-muted">${car.productCount} artículos</small>
+                            <h4 class="mb-1">${car.name} - ${car.currency} ${car.cost}</h4>
+                            <small class="text-muted">${car.soldCount} vendidos</small>
                         </div>
                         <p class="mb-1">${car.description}</p>
                     </div>
@@ -37,8 +38,12 @@ function showCarList(){
 document.addEventListener("DOMContentLoaded", function(e){
     getJSONData("https://japceibal.github.io/emercado-api/cats_products/101.json").then(function(resultObj){
         if (resultObj.status === "ok"){
-            currentCarArray = resultObj.data
+            catName = resultObj.data.catName
+            currentCarArray = resultObj.data.products
             showCarList()
         }
+
+        document.getElementsByClassName("lead")[0].innerHTML =` <p> Verás aquí todas los productos de la categoria <b>${catName}</b> </p>`
+
     });
 });
