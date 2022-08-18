@@ -188,3 +188,13 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+.img-login{
+  display: flex;
+  flex-direction: column;
+}
+
+.form-style{
+  text-align: center;
+  margin-top: 1em;
+}
