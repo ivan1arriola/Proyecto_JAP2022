@@ -198,3 +198,11 @@ a.custom-card:hover {
   text-align: center;
   margin-top: 1em;
 }
+
+.googleBtn{
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  margin: auto;
+}
