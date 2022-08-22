@@ -1,5 +1,6 @@
 let currentCarArray = [];
 let catName ='';
+const URL_CAR = "https://japceibal.github.io/emercado-api/cats_products/101.json"
 
 function setCarID(id) {
     localStorage.setItem("carID", id);
@@ -28,7 +29,7 @@ function showCarList(){
                 </div>
             </div>
             `
-        document.getElementById("car-list-container").innerHTML = htmlContentToAppend;
+        document.getElementById("product-list-container").innerHTML = htmlContentToAppend;
     }
 }
 
@@ -36,7 +37,7 @@ function showCarList(){
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
-    getJSONData("https://japceibal.github.io/emercado-api/cats_products/101.json").then(function(resultObj){
+    getJSONData(URL_CAR).then(function(resultObj){
         if (resultObj.status === "ok"){
             catName = resultObj.data.catName
             currentCarArray = resultObj.data.products
