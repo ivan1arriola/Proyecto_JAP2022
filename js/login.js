@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function(){
     document.getElementById("ingBtn").addEventListener("click", function() {
         
         if (isComplete()){
-            sessionStorage.setItem('user', document.getElementById('email').value);
+            localStorage.setItem('user', document.getElementById('email').value);
             window.location = INDEX;
         } else {
             showAlertError();
