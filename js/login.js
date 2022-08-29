@@ -37,3 +37,13 @@ document.addEventListener("DOMContentLoaded", function(){
 
     
 });
+
+
+document.addEventListener("DOMContentLoaded", function(){
+
+    document.getElementById("botonIngreso").addEventListener("click", function() {
+        console.log(document.getElementById("email").value)
+    });
+
+    
+});
