@@ -17,7 +17,7 @@ const showAlertError = () => {
 
 document.addEventListener("DOMContentLoaded", function(){
 
-    document.getElementById("ingBtn").addEventListener("click", function() {
+    document.getElementById("ingBtn").addEventListener("click", () => {
         
         if (isComplete()){
             localStorage.setItem('user', document.getElementById('email').value);
@@ -25,16 +25,6 @@ document.addEventListener("DOMContentLoaded", function(){
         } else {
             showAlertError();
         }
-    });
-
-    
-});
-
-
-document.addEventListener("DOMContentLoaded", function(){
-
-    document.getElementById("botonIngreso").addEventListener("click", function() {
-        console.log(document.getElementById("email").value)
     });
 
     
