@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function(){
     if(USER==null || USER == "null"){
         window.location = LOGIN;
     }else{
-        document.getElementById("user").innerHTML=USER;
+        document.getElementById("user").innerHTML= USER;
     }
 })
 
