@@ -2,6 +2,7 @@
 Proyecto de e-commerce de JaP
 
 ## Pautas entrega 2
+
 1. En la barra de navegación superior, agregar en la esquina derecha el nombre del usuario ingresado en la pantalla de inicio de sesión. 
 Para ello deberás hacer uso del almacenamiento local.
 
