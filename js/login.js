@@ -2,7 +2,7 @@
 const INDEX = "index.html";
 const ERROR = "Los datos ingresados no son validos, por favor, revise e intentelo denuevo";     
 
-console.log("version 19:59")
+console.log("version 20:02")
 console.log("usuario actual :", localStorage.getItem('user'))
 
 const loginIn = (user) => {
@@ -11,16 +11,20 @@ const loginIn = (user) => {
  }
 
 
-const decodeJwtResponse = (response)=>{
-    console.log("responsse: ", response);
-    const json = jwtDecode(response);
-    console.log("json: ", json)
-    return json;
+ function decodeJwtResponse(token) { // https://stackoverflow.com/questions/71686512/gsi-logger-the-value-of-callback-is-not-a-function-configuration-ignored
+    let base64Url = token.split('.')[1]
+    let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    let jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+    return JSON.parse(jsonPayload)
 }
 
 
 globalThis.inicioSesionGoogle = (response) => {
+    console.log(response);
     const responsePayload = decodeJwtResponse(response.credential);
+    console.log responsePayload;
 
     console.log("ID: " + responsePayload.sub);
     console.log('Full Name: ' + responsePayload.name);
