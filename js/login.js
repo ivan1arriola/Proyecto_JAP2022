@@ -1,6 +1,14 @@
 const INDEX = "index.html";
 const ERROR = "Los datos ingresados no son validos, por favor, revise e intentelo denuevo";     
 
+
+const decodeJwtResponse = async(response)=>{
+    console.log(response);
+    const json = await response.json();
+    return json;
+}
+
+
 function inicioSesionGoogle(response) {
     // decodeJwtResponse() is a custom function defined by you
     // to decode the credential response.
