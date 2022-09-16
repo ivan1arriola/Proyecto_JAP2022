@@ -14,7 +14,7 @@ const decodeJwtResponse = (response)=>{
 }
 
 
-function inicioSesionGoogle(response) {
+const inicioSesionGoogle = (response) => {
     const responsePayload = decodeJwtResponse(response.credential);
 
     console.log("ID: " + responsePayload.sub);
