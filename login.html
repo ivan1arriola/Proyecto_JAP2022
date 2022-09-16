@@ -6,11 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <title>eMercado - Todo lo que busques está aquí</title>
-  
+
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   
+
   <style>
     body {
       background-color: rgb(248, 249, 250);
@@ -19,39 +20,45 @@
 </head>
 
 <body>
-      <div class="main">
+  <div class="main">
 
-        <div class="signin">
+    <div class="signin">
 
-          <div class="img-login">
-            <img src="./img/login.png" alt="Imagen de login">
-          </div>  
+      <div class="img-login">
+        <img src="./img/login.png" alt="Imagen de login">
+      </div>
 
-          <h2 class="form-style">Inicio de Sesion</h2>
+      <h2 class="form-style">Inicio de Sesion</h2>
 
-          <div class="loginForm">
+      <div class="loginForm">
 
-            <div class="form-style">
-              <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" id="email">
-            </div>
+        <div class="form-style">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email">
+        </div>
 
-            <div class="form-style">
-              <label for="password" class="form-label">Contraseña</label>
-              <input type="password" class="form-control" id="password">
-            </div>
+        <div class="form-style">
+          <label for="password" class="form-label">Contraseña</label>
+          <input type="password" class="form-control" id="password">
+        </div>
 
-            <div class="form-style">
-              <button class="btn btn-primary" type="button" id="ingBtn">Ingresar</button>
-            </div>
-
-          </div>
-
-          
+        <div class="form-style">
+          <button class="btn btn-primary" type="button" id="ingBtn">Ingresar</button>
         </div>
 
       </div>
+
+      <div id="g_id_onload" data-client_id="278086413124-nh0322hh310mccol76ktrog82vc0iu3u.apps.googleusercontent.com"
+        data-context="signup" data-ux_mode="popup" data-callback="inicioSesionGoogle" data-nonce="">
+      </div>
+
+      <div class="g_id_signin" data-type="standard" data-shape="pill" data-theme="filled_black"
+        data-text="$ {button.text}" data-size="large" data-logo_alignment="left" data-width="200">
+      </div>
     </div>
+
+  </div>
+  </div>
   </main>
   <footer class="text-muted">
     <div class="container">
@@ -64,6 +71,7 @@
     </div>
   </footer>
   <script src="js/login.js"></script>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
 </body>
 
 </html>
