@@ -2,7 +2,7 @@
 .card-body,
 .container,
 .site-header {
-  font-family: 'Raleway', serif !important;
+  font-family: "Raleway", serif !important;
 }
 
 .jumbotron .display-4 {
@@ -32,8 +32,8 @@ nav a {
   height: 50vh;
   padding: 5em inherit;
   margin-bottom: 0;
-  background-color: #53C0FB;
-  background: url('../img/cover_back.png');
+  background-color: #53c0fb;
+  background: url("../img/cover_back.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -73,12 +73,12 @@ footer {
 }
 
 footer p {
-  margin-bottom: .25rem;
+  margin-bottom: 0.25rem;
 }
 
 .site-header a {
   color: white;
-  transition: ease-in-out color .15s;
+  transition: ease-in-out color 0.15s;
 }
 
 .site-header .dropdown-menu a {
@@ -86,7 +86,7 @@ footer p {
 }
 
 .dropzone {
-  border: 2px dashed #0087F7;
+  border: 2px dashed #0087f7;
   border-radius: 5px;
   background: white;
 }
@@ -162,6 +162,16 @@ footer p {
   max-width: 330px;
   padding: 15px;
   margin: auto;
+  display: block;
+}
+.signin h2, .signin p{
+  text-align: center;
+}
+
+.signin div {
+  text-align: center;
+  padding: 5px;
+  display: block;
 }
 
 #spinner-wrapper {
@@ -189,32 +199,25 @@ a.custom-card:hover {
   color: orange;
 }
 
-.img-login{
-  display: flex;
-  flex-direction: column;
+.img-login {
+  width: 20em;
+  display: block;
 }
 
-.form-style{
+.form-style {
   text-align: center;
   margin-top: 1em;
 }
 
-.googleBtn{
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  padding: 15px;
-  margin: auto;
+.g_id_signin {
 }
 
-.product-info h1{
+.product-info h1 {
   padding: 1em;
   margin: auto;
   text-align: center;
   font-weight: 600;
 }
-
-
 
 .product-info .image {
   max-width: 20em;
