@@ -2,6 +2,8 @@ const INDEX = "index.html";
 const ERROR = "Los datos ingresados no son validos, por favor, revise e intentelo denuevo";     
 
 console.log("version 16:12")
+
+
 const decodeJwtResponse = async(response)=>{
     console.log(response);
     const json = await response.json();
