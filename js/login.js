@@ -1,12 +1,15 @@
+import jwtDecode from 'https://esm.run/jwt-decode';
+
 const INDEX = "index.html";
 const ERROR = "Los datos ingresados no son validos, por favor, revise e intentelo denuevo";     
 
-console.log("version 16:18")
+console.log("version 16:43")
 
 
-const decodeJwtResponse = async(response)=>{
-    console.log(response);
-    const json = await response.json();
+const decodeJwtResponse = (response)=>{
+    console.log("responsse: ", response);
+    const json = jwtDecode(response);
+    console.log("json: ", json)
     return json;
 }
 
