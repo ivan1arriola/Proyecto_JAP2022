@@ -4,6 +4,11 @@ const ERROR = "Los datos ingresados no son validos, por favor, revise e intentel
 
 console.log("version 16:50")
 
+const loginIn = (user) => {
+    localStorage.setItem('user', user);
+    window.location = INDEX;
+ }
+
 
 const decodeJwtResponse = (response)=>{
     console.log("responsse: ", response);
@@ -24,8 +29,10 @@ const inicioSesionGoogle = (response) => {
     console.log("Email: " + responsePayload.email);
 
     localStorage.setItem('user', responsePayload.email);
-    //window.location = INDEX;
+    //loginIn(responsePayload.email)
  }
+
+
 
 const isComplete = () => {
     let arr = ["password", "email"];
@@ -46,8 +53,7 @@ document.addEventListener("DOMContentLoaded", function(){
     document.getElementById("ingBtn").addEventListener("click", () => {
         
         if (isComplete()){
-            localStorage.setItem('user', document.getElementById('email').value);
-            window.location = INDEX;
+            loginIn(document.getElementById('email').value);
         } else {
             showAlertError();
         }
