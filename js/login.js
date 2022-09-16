@@ -3,6 +3,7 @@ const INDEX = "index.html";
 const ERROR = "Los datos ingresados no son validos, por favor, revise e intentelo denuevo";     
 
 console.log("version 16:50")
+console.log("usuario actual :", localStorage.getItem('user'))
 
 const loginIn = (user) => {
     localStorage.setItem('user', user);
