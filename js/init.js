@@ -11,7 +11,7 @@ const USER = localStorage.getItem('user');
 const LOGIN = "login.html"
 
 document.addEventListener("DOMContentLoaded", function(){
-    if(USER==null || USER == "null"){
+    if(USER==null || USER == "null" || USER=="undefined" || USER==undefined){
         window.location = LOGIN;
     }else{
         document.getElementById("user").innerHTML= USER;
