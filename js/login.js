@@ -1,7 +1,7 @@
 const INDEX = "index.html";
 const ERROR = "Los datos ingresados no son validos, por favor, revise e intentelo denuevo";     
 
-console.log("version 16:12")
+console.log("version 16:18")
 
 
 const decodeJwtResponse = async(response)=>{
@@ -12,8 +12,6 @@ const decodeJwtResponse = async(response)=>{
 
 
 function inicioSesionGoogle(response) {
-    // decodeJwtResponse() is a custom function defined by you
-    // to decode the credential response.
     const responsePayload = decodeJwtResponse(response.credential);
 
     console.log("ID: " + responsePayload.sub);
@@ -24,7 +22,7 @@ function inicioSesionGoogle(response) {
     console.log("Email: " + responsePayload.email);
 
     localStorage.setItem('user', responsePayload.email);
-    window.location = INDEX;
+    //window.location = INDEX;
  }
 
 const isComplete = () => {
