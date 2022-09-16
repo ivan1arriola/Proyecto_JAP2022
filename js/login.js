@@ -1,9 +1,8 @@
-import jwtDecode from 'https://esm.run/jwt-decode';
 
 const INDEX = "index.html";
 const ERROR = "Los datos ingresados no son validos, por favor, revise e intentelo denuevo";     
 
-console.log("version 16:43")
+console.log("version 16:50")
 
 
 const decodeJwtResponse = (response)=>{
