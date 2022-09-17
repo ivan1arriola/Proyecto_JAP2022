@@ -2,7 +2,7 @@
 const INDEX = "index.html";
 const ERROR = "Los datos ingresados no son validos, por favor, revise e intentelo denuevo";     
 
-console.log("version 20:02")
+console.log("version 22:36")
 console.log("usuario actual :", localStorage.getItem('user'))
 
 const loginIn = (user) => {
@@ -24,7 +24,7 @@ const loginIn = (user) => {
 globalThis.inicioSesionGoogle = (response) => {
     console.log(response);
     const responsePayload = decodeJwtResponse(response.credential);
-    console.log responsePayload;
+    console.log (responsePayload)
 
     console.log("ID: " + responsePayload.sub);
     console.log('Full Name: ' + responsePayload.name);
@@ -63,7 +63,6 @@ document.addEventListener("DOMContentLoaded", function(){
             showAlertError();
         }
     });
-
     
 
     
