@@ -1,5 +1,5 @@
 let productsArray = [];
-let catName ='';
+let catName = '';
 
 let minCount = undefined;
 let maxCount = undefined;
@@ -19,16 +19,20 @@ const setProdID = (id) => {
     window.location = "product-info.html"
 }
 
-function showCatList(){
+
+
+
+
+function showCatList() {
 
     let htmlContentToAppend = "";
-    for(let i = 0; i < productsArray.length; i++){
+    for (let i = 0; i < productsArray.length; i++) {
         let product = productsArray[i];
         if (((minCount == undefined) || (parseInt(product.cost) >= minCount)) &&
-            ((maxCount == undefined) || (parseInt(product.cost) <= maxCount))){
+            ((maxCount == undefined) || (parseInt(product.cost) <= maxCount))) {
 
             htmlContentToAppend += `
-            <div onclick="setProdID(${product.id})" class="list-group-item list-group-item-action cursor-active">
+            <div onclick="setProdID(${product.id})"  id='${product.id}' class="list-group-item list-group-item-action cursor-active">
                 <div class="row">
                     <div class="col-3">
                         <img src="${product.image}" alt="${product.description}" class="img-thumbnail">
@@ -48,22 +52,51 @@ function showCatList(){
     }
 }
 
+const search = () => {
+    /*
+    input = document.getElementById("search").value.toUpperCase();
+    tam = input.length;
+    productsArray = productsArray.filter((product) => {
+        productName = product.name.toUpperCase();
+        console.log(productName)
+        subName = productName.substring(0, tam);
+        console.log(subName)
+        console.log(productName,input === subName)
+        return input == subName
+    });
+    console.log(productsArray)
+    showCatList() */
+
+    input = document.getElementById("search").value.toUpperCase();
+    tam = input.length;
+    productsArray.forEach((product)=>{
+        shortName = product.name.toUpperCase().substring(0, tam);
+        item = document.getElementById(product.id);
+        if(input == shortName){
+            item.style.display = '';
+        } else item.style.display = 'none';
+        
+    })
+    
+
+}
+
 const sortByCostAsc = () => {
-    productsArray = productsArray.sort((a,b)=>{
+    productsArray = productsArray.sort((a, b) => {
         return a.cost - b.cost;
     })
     showCatList()
 }
 
 const sortByCostDesc = () => {
-    productsArray = productsArray.sort((a,b)=>{
+    productsArray = productsArray.sort((a, b) => {
         return b.cost - a.cost;
     })
     showCatList()
 }
 
 const sortBySoldCount = () => {
-    productsArray = productsArray.sort((a,b)=>{
+    productsArray = productsArray.sort((a, b) => {
         return b.soldCount - a.soldCount;
     })
     showCatList()
@@ -72,6 +105,7 @@ const sortBySoldCount = () => {
 const cleanRangeFilter = () => {
     document.getElementById("rangeFilterCountMin").value = "";
     document.getElementById("rangeFilterCountMax").value = "";
+    document.getElementById("search").value = "";
 
     minCount = undefined;
     maxCount = undefined;
@@ -83,37 +117,40 @@ const rangeFilterCount = () => {
     minCount = document.getElementById("rangeFilterCountMin").value;
     maxCount = document.getElementById("rangeFilterCountMax").value;
 
-    if ((minCount != undefined) && (minCount != "") && (parseInt(minCount)) >= 0){
+    if ((minCount != undefined) && (minCount != "") && (parseInt(minCount)) >= 0) {
         minCount = parseInt(minCount);
     }
-    else{
+    else {
         minCount = undefined;
     }
 
-    if ((maxCount != undefined) && (maxCount != "") && (parseInt(maxCount)) >= 0){
+    if ((maxCount != undefined) && (maxCount != "") && (parseInt(maxCount)) >= 0) {
         maxCount = parseInt(maxCount);
     }
-    else{
+    else {
         maxCount = undefined;
     }
 
     showCatList();
 }
 
+
+
+
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
-document.addEventListener("DOMContentLoaded", function(e){
-    getJSONData(CATEGORY_URL).then(function(resultObj){
-        if (resultObj.status === "ok"){
+document.addEventListener("DOMContentLoaded", function (e) {
+    getJSONData(CATEGORY_URL).then(function (resultObj) {
+        if (resultObj.status === "ok") {
             catName = resultObj.data.catName
             productsArray = resultObj.data.products
             showCatList()
         }
 
-        document.getElementsByClassName("lead")[0].innerHTML =` <p> Verás aquí todas los productos de la categoria <b>${catName}</b> </p>`;
-        
-        
+        document.getElementsByClassName("lead")[0].innerHTML = ` <p> Verás aquí todas los productos de la categoria <b>${catName}</b> </p>`;
+
+
         sortByCostAscBtn.addEventListener("click", sortByCostAsc);
         sortByCostDescBtn.addEventListener("click", sortByCostDesc);
         sortBySoldCountBtn.addEventListener("click", sortBySoldCount);
@@ -121,7 +158,7 @@ document.addEventListener("DOMContentLoaded", function(e){
         cleanRangeFilterBtn.addEventListener("click", cleanRangeFilter);
         rangeFilterCountBtn.addEventListener("click", rangeFilterCount);
     });
-    
+
 });
 
 /* Con el listado de productos desplegado:

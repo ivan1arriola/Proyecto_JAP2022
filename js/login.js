@@ -6,11 +6,11 @@ console.log("Google Login funcionando")
 
 const loginIn = (user) => {
     localStorage.setItem('user', user);
-    window.location = INDEX;
- }
+    window.location = INDEX; 
+}
 
 
- function decodeJwtResponse(token) { // https://stackoverflow.com/questions/71686512/gsi-logger-the-value-of-callback-is-not-a-function-configuration-ignored
+function decodeJwtResponse(token) { // https://stackoverflow.com/questions/71686512/gsi-logger-the-value-of-callback-is-not-a-function-configuration-ignored
     let base64Url = token.split('.')[1]
     let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
     let jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
@@ -32,7 +32,7 @@ globalThis.inicioSesionGoogle = (response) => {
 
     localStorage.setItem('user', responsePayload.email);
     loginIn(responsePayload.email)
- }
+}
 
 
 
