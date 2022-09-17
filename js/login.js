@@ -2,8 +2,7 @@
 const INDEX = "index.html";
 const ERROR = "Los datos ingresados no son validos, por favor, revise e intentelo denuevo";     
 
-console.log("version 22:36")
-console.log("usuario actual :", localStorage.getItem('user'))
+console.log("Google Login funcionando")
 
 const loginIn = (user) => {
     localStorage.setItem('user', user);
@@ -34,7 +33,7 @@ globalThis.inicioSesionGoogle = (response) => {
     console.log("Email: " + responsePayload.email);
 
     localStorage.setItem('user', responsePayload.email);
-    //loginIn(responsePayload.email)
+    loginIn(responsePayload.email)
  }
 
 
