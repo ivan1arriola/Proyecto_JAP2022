@@ -19,10 +19,6 @@ const setProdID = (id) => {
     window.location = "product-info.html"
 }
 
-
-
-
-
 function showCatList() {
 
     let htmlContentToAppend = "";
@@ -53,32 +49,15 @@ function showCatList() {
 }
 
 const search = () => {
-    /*
-    input = document.getElementById("search").value.toUpperCase();
-    tam = input.length;
-    productsArray = productsArray.filter((product) => {
-        productName = product.name.toUpperCase();
-        console.log(productName)
-        subName = productName.substring(0, tam);
-        console.log(subName)
-        console.log(productName,input === subName)
-        return input == subName
-    });
-    console.log(productsArray)
-    showCatList() */
-
     input = document.getElementById("search").value.toUpperCase();
     tam = input.length;
     productsArray.forEach((product)=>{
         shortName = product.name.toUpperCase().substring(0, tam);
         item = document.getElementById(product.id);
-        if(input == shortName){
+        if(item!= null && input == shortName){
             item.style.display = '';
-        } else item.style.display = 'none';
-        
+        } else if(item!= null) item.style.display = 'none'; 
     })
-    
-
 }
 
 const sortByCostAsc = () => {
@@ -86,6 +65,7 @@ const sortByCostAsc = () => {
         return a.cost - b.cost;
     })
     showCatList()
+    search()
 }
 
 const sortByCostDesc = () => {
@@ -93,6 +73,7 @@ const sortByCostDesc = () => {
         return b.cost - a.cost;
     })
     showCatList()
+    search()
 }
 
 const sortBySoldCount = () => {
@@ -100,6 +81,7 @@ const sortBySoldCount = () => {
         return b.soldCount - a.soldCount;
     })
     showCatList()
+    search()
 }
 
 const cleanRangeFilter = () => {
@@ -132,6 +114,7 @@ const rangeFilterCount = () => {
     }
 
     showCatList();
+    search()
 }
 
 
