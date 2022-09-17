@@ -7,6 +7,35 @@ const setProdID = (id) => {
   window.location = "product-info.html";
 };
 
+const setCommentDate = () => {
+  const date = new Date();
+  const [month, day, year]       = [(date.getMonth()<10)? '0'+ date.getMonth() :date.getMonth(), date.getDate(), date.getFullYear()];
+  const [hour, minutes, seconds] = [date.getHours(), date.getMinutes(), date.getSeconds()];
+  return year + '-' + month + '-' + day + ' ' + hour + ':' + minutes + ':' + seconds;
+}
+
+const submitScore = () => {
+  
+    const newComment = {
+      product: prodID,
+      score: document.getElementById('score').value,
+      description: document.getElementById('comment').value,
+      user: localStorage.getItem('user'),
+      dateTime: setCommentDate(),
+    }
+
+    let commentsDiv = document.getElementById("comments");
+    const {dateTime:date, description, score, user} = newComment;
+    commentsDiv.innerHTML = `
+        <div class="list-group-item list-group-item-action cursor-active">
+            <div class="row">
+                <h5><b>${user}</b> - ${date} - ${stars(score)}</h5>
+                <p>${description}</p>
+            </div>
+        </div>
+    `+commentsDiv.innerHTML;
+}
+
 const showImages = (images) => {
   imagesDiv = document.getElementById("images");
 

@@ -75,10 +75,37 @@
           <div id="relatedProducts"></div>
         </div-->
 
-        <div> 
+        <div>
+          <h2>Comentar</h2>
+          <div class="addComments">
+            <form>
+              <div class="form-group ">
+                <label for="comment">Tu comentario</label>
+                <textarea class="form-control" id="comment" rows="3"></textarea>
+              </div>
+              <div class="form-group ">
+                <label for="score">Tu Puntaje</label>
+                <select class="form-control" id="score">
+                  <option value="1">★☆☆☆☆ 1 estrella</option>
+                  <option value="2">★★☆☆☆ 2 estrellas</option>
+                  <option value="3">★★★☆☆ 3 estrellas</option>
+                  <option value="4">★★★★☆ 4 estrellas</option>
+                  <option value="5">★★★★★ 5 estrellas</option>
+                </select>
+              </div>
+              <div class="form-group ">
+                <button class="btn btn-primary" type="button" onclick="submitScore()">Enviar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div>
           <h2>Comentarios</h2>
           <div id="comments"></div>
         </div>
+
+        
       </div>
   </main>
   <footer class="text-muted">
