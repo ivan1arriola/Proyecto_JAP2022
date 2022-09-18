@@ -214,9 +214,6 @@ a.custom-card:hover {
   margin-top: 1em;
 }
 
-.g_id_signin {
-}
-
 .product-info h1 {
   padding: 1em;
   margin: auto;
@@ -229,3 +226,12 @@ a.custom-card:hover {
   padding: 10px;
 }
 
+.staticContainer{
+  display: block;
+}
+
+.staticContainer flex{
+  float: left;
+  padding:  1em;
+  max-width: 15em;
+}
