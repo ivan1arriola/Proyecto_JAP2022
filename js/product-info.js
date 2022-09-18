@@ -10,37 +10,41 @@ const setProdID = (id) => {
 const setCommentDate = () => {
   const date = new Date();
 
-  const month = (date.getMonth()<10)? '0'+ date.getMonth() : date.getMonth();
-  const day = (date.getDay()<10)? '0'+ date.getDay() : date.getDay();
+  const month = date.getMonth() < 10 ? "0" + date.getMonth() : date.getMonth();
+  const day = date.getDay() < 10 ? "0" + date.getDay() : date.getDay();
   const year = date.getFullYear();
-  const hour = (date.getHours()<10)? '0'+ date.getHours() : date.getHours();
-  const minutes = (date.getMinutes()<10)? '0'+ date.getMinutes() : date.getMinutes();
-  const seconds = (date.getSeconds()<10)? '0'+ date.getSeconds() : date.getSeconds();
+  const hour = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+  const minutes =
+    date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+  const seconds =
+    date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
 
-  return year + '-' + month + '-' + day + ' ' + hour + ':' + minutes + ':' + seconds;
-}
+  return (
+    year + "-" + month + "-" + day + " " + hour + ":" + minutes + ":" + seconds
+  );
+};
 
 const submitScore = () => {
-  
-    const newComment = {
-      product: prodID,
-      score: document.getElementById('score').value,
-      description: document.getElementById('comment').value,
-      user: localStorage.getItem('user'),
-      dateTime: setCommentDate(),
-    }
+  const newComment = {
+    product: prodID,
+    score: document.getElementById("score").value,
+    description: document.getElementById("comment").value,
+    user: localStorage.getItem("user"),
+    dateTime: setCommentDate(),
+  };
 
-    let commentsDiv = document.getElementById("comments");
-    const {dateTime:date, description, score, user} = newComment;
-    commentsDiv.innerHTML = `
+  let commentsDiv = document.getElementById("comments");
+  const { dateTime: date, description, score, user } = newComment;
+  commentsDiv.innerHTML =
+    `
         <div class="list-group-item list-group-item-action cursor-active">
             <div class="row">
                 <h5><b>${user}</b> - ${date} - ${stars(score)}</h5>
                 <p>${description}</p>
             </div>
         </div>
-    `+commentsDiv.innerHTML;
-}
+    ` + commentsDiv.innerHTML;
+};
 
 const showImages = (images) => {
   imagesDiv = document.getElementById("images");
@@ -85,8 +89,7 @@ const showRelatedProducts = (relatedProducts) => {
 } */
 
 const showInfo = (data) => {
-  const { name, currency, cost, description, category, soldCount, images } =
-    data;
+  const { name, currency, cost, description, category, soldCount, images } =data;
 
   document.getElementById("product-name").innerHTML = name;
   document.getElementById("precio").innerHTML = currency + " " + cost;
@@ -98,26 +101,26 @@ const showInfo = (data) => {
   // showRelatedProducts(data.relatedProducts)
 };
 
-const stars = (score)=> {
-    let starsToAppend = ""
+const stars = (score) => {
+  let starsToAppend = "";
 
-    for(let i=0; i<score ; i++){
-        starsToAppend += '<span class="fa fa-star checked"></span>'
-    };
+  for (let i = 0; i < score; i++) {
+    starsToAppend += '<span class="fa fa-star checked"></span>';
+  }
 
-    for(let i=score; i<5 ; i++){
-        starsToAppend += '<span class="fa fa-star"></span>'
-    };
+  for (let i = score; i < 5; i++) {
+    starsToAppend += '<span class="fa fa-star"></span>';
+  }
 
-    return starsToAppend;
-}
+  return starsToAppend;
+};
 
 const showComments = (comments) => {
   const commentsDiv = document.getElementById("comments");
   let htmlContentToAppend = "";
 
   comments.forEach((comment) => {
-    const {dateTime:date, description, score, user} = comment;
+    const { dateTime: date, description, score, user } = comment;
     htmlContentToAppend += `
         <div class="list-group-item list-group-item-action cursor-active">
             <div class="row">

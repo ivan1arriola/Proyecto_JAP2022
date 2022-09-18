@@ -195,9 +195,7 @@ a.custom-card:hover {
   text-decoration: inherit;
 }
 
-.checked {
-  color: rgb(255, 189, 6);
-}
+/* login */
 
 .img-login {
   width: 20em;
@@ -208,6 +206,8 @@ a.custom-card:hover {
   text-align: center;
   margin-top: 1em;
 }
+
+/* product-info */
 
 .addComments div{
   margin-bottom: 1em;
@@ -226,12 +226,6 @@ a.custom-card:hover {
   padding: 10px;
 }
 
-.staticContainer{
-  display: block;
-}
-
-.staticContainer flex{
-  float: left;
-  padding:  1em;
-  max-width: 15em;
+.checked {
+  color: rgb(255, 189, 6);
 }
