@@ -215,10 +215,15 @@ a.custom-card:hover {
 }
 
 .product-info h1 {
-  padding: 1em;
-  margin: auto;
+  margin-bottom: 0.5em;
+  margin-top: 1em;
   text-align: center;
   font-weight: 600;
+}
+
+.product-info h2 {
+  margin-bottom: 1em;
+  text-align: center;
 }
 
 .product-info .image {
@@ -228,4 +233,21 @@ a.custom-card:hover {
 
 .checked {
   color: rgb(255, 189, 6);
+}
+
+h5 .success{
+  color: green;
+}
+
+h5 .danger{
+  color: red;
+}
+
+h5 .warning{
+  color: rgb(185, 144, 30);
+}
+
+.product-info hr {
+  margin-top: 3em;
+  margin-bottom: 3em;
 }

@@ -7,17 +7,30 @@ const setProdID = (id) => {
   window.location = "product-info.html";
 };
 
+const commentToHtml = (comment) => {
+  const { dateTime: date, description, score, user } = comment;
+  return `
+    <div class="list-group-item ">
+      <h5><b class=${(score>3)? 'success' : (score<3)? 'danger' : 'warning'} >${user}</b> - ${date} - ${stars(score)}</h5>
+      <p>${description}</p>
+    </div>
+  `;
+}
+
 const setCommentDate = () => {
   const date = new Date();
+  console.log(date)
 
-  const month = date.getMonth() < 10 ? "0" + date.getMonth() : date.getMonth();
-  const day = date.getDay() < 10 ? "0" + date.getDay() : date.getDay();
+  const month = (date.getMonth()+1) < 10 ? "0" + (date.getMonth()+1) : (date.getMonth()+1);
+  const day = date.getDate() < 9 ? "0" + date.getDate() : date.getDate();
   const year = date.getFullYear();
   const hour = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
   const minutes =
     date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
   const seconds =
     date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+
+    console.log(date.getDate())
 
   return (
     year + "-" + month + "-" + day + " " + hour + ":" + minutes + ":" + seconds
@@ -33,17 +46,11 @@ const submitScore = () => {
     dateTime: setCommentDate(),
   };
 
+  document.getElementById("score").value = 1;
+  document.getElementById("comment").value = ''
+
   let commentsDiv = document.getElementById("comments");
-  const { dateTime: date, description, score, user } = newComment;
-  commentsDiv.innerHTML =
-    `
-        <div class="list-group-item list-group-item-action cursor-active">
-            <div class="row">
-                <h5><b>${user}</b> - ${date} - ${stars(score)}</h5>
-                <p>${description}</p>
-            </div>
-        </div>
-    ` + commentsDiv.innerHTML;
+  commentsDiv.innerHTML = commentToHtml(newComment) + commentsDiv.innerHTML;
 };
 
 const showImages = (images) => {
@@ -115,20 +122,14 @@ const stars = (score) => {
   return starsToAppend;
 };
 
+
+
 const showComments = (comments) => {
   const commentsDiv = document.getElementById("comments");
   let htmlContentToAppend = "";
 
   comments.forEach((comment) => {
-    const { dateTime: date, description, score, user } = comment;
-    htmlContentToAppend += `
-        <div class="list-group-item list-group-item-action cursor-active">
-            <div class="row">
-                <h5><b>${user}</b> - ${date} - ${stars(score)}</h5>
-                <p>${description}</p>
-            </div>
-        </div>
-    `;
+    htmlContentToAppend += commentToHtml(comment);
   });
   commentsDiv.innerHTML = htmlContentToAppend;
 };

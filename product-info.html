@@ -40,28 +40,25 @@
     <div class="container product-info">
       <div>
         <h1 id="product-name"> </h1>
-        <hr>
       </div>
 
-      <div>
-        <h2>Precio</h2>
-        <p id="precio"></p>
-      </div>
+      <hr/>
 
-      <div>
-        <h2>Descripcion</h2>
-        <p id="descripcion"></p>
-      </div>
+      <dl class="row">
+        <dt class="col-lg-4">Precio</dt>
+        <dd class="col-lg-8" id="precio"></dd>
+      
+        <dt class="col-lg-4">Descripcion</dt>
+        <dd class="col-lg-8" id="descripcion"></dd>
+      
+        <dt class="col-lg-4">Categoria</dt>
+        <dd class="col-lg-8" id="categoria"></dd>
+      
+        <dt class="col-lg-4">Cantidad de Vendidos</dt>
+        <dd class="col-lg-8" id="cant-vendidos"></dd>
+      </dl>
 
-      <div>
-        <h2>Categoría</h2>
-        <p id="categoria"></p>
-      </div>
-
-      <div>
-        <h2>Cantidad de Vendidos</h2>
-        <p id="cant-vendidos"></p>
-      </div>
+      <hr/>
 
       <div>
         <h2>Imagenes Ilustrativas</h2>
@@ -72,6 +69,7 @@
           <h2>Productos Relacionados</h2>
           <div id="relatedProducts"></div>
         </div-->
+<hr/>
 
       <div>
         <h2>Comentar</h2>
@@ -98,10 +96,16 @@
         </div>
       </div>
 
+      <hr/>
+
       <div>
         <h2>Comentarios</h2>
-        <div id="comments"></div>
+        <div id="comments" class="list-group list-group-flush">
+
+        </div>
       </div>
+
+      <hr/>
 
 
     </div>
