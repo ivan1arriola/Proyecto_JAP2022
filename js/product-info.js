@@ -45,7 +45,7 @@ const submitScore = () => {
 const showImages = (images) => {
   imagesDiv = document.getElementById("images");
   let imagesToAppend = "";
-  images.map((image, index) => {
+  images.forEach((image, index) => {
     imagesToAppend += `
         <div class="image">
             <img src="${image}" alt="${"image" + index}" class="img-thumbnail">
