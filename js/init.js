@@ -8,7 +8,13 @@ const CART_BUY_URL = "https://japceibal.github.io/emercado-api/cart/buy.json";
 const EXT_TYPE = ".json";
 
 const USER = localStorage.getItem('user');
-const LOGIN = "login.html"
+const LOGIN = "login.html";
+const CART = 'cart.html';
+
+const loginOut = () => {
+  localStorage.removeItem('user');
+  location. reload();
+}
 
 document.addEventListener("DOMContentLoaded", function(){
     if(USER==null || USER == "null" || USER=="undefined" || USER==undefined){
