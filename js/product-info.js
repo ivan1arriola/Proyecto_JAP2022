@@ -91,10 +91,10 @@ const showRelatedProducts= (products) => {
     const {id, name, image} = product;
     reletedHTML += `
     <div class="col">
-    <div onclick="setProdID(${id})" class="card" style="width: 18rem;">
-      <img class="card-img-top" src=${image} alt="${name + ' ' + id}">
+    <div onclick="setProdID(${id})" class="card mx-5" >
+      <img class="card-img-top " src=${image} alt="${name + ' ' + id}">
       <div class="card-body">
-        <h5 class="card-title">${name}</h5>
+        <h3 class="card-title">${name}</h3>
       </div>
     </div>
     </div>

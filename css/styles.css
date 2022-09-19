@@ -259,16 +259,6 @@ h5 .warning{
   margin-bottom: 3em;
 }
 
-.info{
-  display: flex;
+.carousel-images{
+  max-width: 30em;
 }
-
-.info div {
-  display: inline-block;
-}
-
-.product-images{
-  width: 50em;
-  margin-right: 2em;
-}
-
