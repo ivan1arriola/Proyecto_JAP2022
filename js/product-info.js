@@ -2,6 +2,7 @@ const prodID = localStorage.getItem("prodID");
 const INFO_URL = PRODUCT_INFO_URL + prodID + EXT_TYPE;
 const COMMENTS_URL = PRODUCT_INFO_COMMENTS_URL + prodID + EXT_TYPE;
 
+
 const hideCommentsEmpty = () => {
   document.getElementById('commentsEmpty').style.display = 'none'
 };
@@ -23,7 +24,6 @@ const commentToHtml = (comment) => {
 
 const setCommentDate = () => {
   const date = new Date();
-  console.log(date)
 
   const month = (date.getMonth() + 1) < 10 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1);
   const day = date.getDate() < 9 ? "0" + date.getDate() : date.getDate();
@@ -34,7 +34,6 @@ const setCommentDate = () => {
   const seconds =
     date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
 
-  console.log(date.getDate())
 
   return (
     year + "-" + month + "-" + day + " " + hour + ":" + minutes + ":" + seconds
@@ -87,7 +86,6 @@ const showImages = (images) => {
 const showRelatedProducts= (products) => {
   let reletedHTML = ``;
   products.forEach((product)=>{
-    console.log(product);
     const {id, name, image} = product;
     reletedHTML += `
     <div class="col"> 
@@ -112,6 +110,17 @@ const showInfo = (data) => {
   document.getElementById("descripcion").innerHTML = description;
   document.getElementById("categoria").innerHTML = category;
   document.getElementById("cant-vendidos").innerHTML = soldCount;
+
+  const btnAdd = document.getElementById("btn-addToCart");
+  newArticle = {
+    id: prodID,
+    name: name,
+    count: 1,
+    unitCost: cost,
+    currency: currency,
+    image: images[0]
+  }
+  btnAdd.addEventListener("click", ()=> addToCart(newArticle));
 
   showImages(images);
   showRelatedProducts(relatedProducts)

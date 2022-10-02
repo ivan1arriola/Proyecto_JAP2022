@@ -270,3 +270,13 @@ h5 .warning{
 .hover-control:hover {
   background-color: black;
 }
+
+/* Carrito */
+
+.cart img {
+  width: 6em;
+}
+
+.cart input{
+  width: 4em;
+}
