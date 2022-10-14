@@ -82,13 +82,11 @@ const showRelatedProducts= (products) => {
   products.forEach((product)=>{
     const {id, name, image} = product;
     reletedHTML += `
-    <div class="col"> 
-    <div onclick="setProdID(${id})" class="card hover" >
-      <img class="card-img-top  p-5 " src=${image} alt="${name + ' ' + id}">
+    <div onclick="setProdID(${id})" class="card hover">
+      <img class="card-img " src=${image} alt="${name + ' ' + id}">
       <div class="card-body">
         <h3 class="card-title">${name}</h3>
       </div>
-    </div>
     </div>
     `
   })
@@ -100,6 +98,7 @@ const showInfo = (data) => {
   const { name, currency, cost, description, category, soldCount, images, relatedProducts } = data;
 
   document.getElementById("product-name").innerHTML = name;
+  document.getElementById("product-name-modal").innerHTML = name;
   document.getElementById("precio").innerHTML = currency + " " + cost;
   document.getElementById("descripcion").innerHTML = description;
   document.getElementById("categoria").innerHTML = category;

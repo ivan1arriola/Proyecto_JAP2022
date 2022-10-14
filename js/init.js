@@ -23,6 +23,8 @@ const setProdID = (id) => {
   window.location = "product-info.html"
 }
 
+const goToCart = () => window.location = "cart.html"
+
 document.addEventListener("DOMContentLoaded", function () {
   if (
     USER == null ||
@@ -67,7 +69,6 @@ const addToCart = (newArticle, aumentar = true) => {
     cart.articles[articleIndex].count++;
   }
   localStorage.setItem("cart", JSON.stringify(cart));
-  aumentar ? window.location="cart.html": null;
 }
 
 let showSpinner = function () {

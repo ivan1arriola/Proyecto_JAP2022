@@ -20,7 +20,7 @@ const showCart = () => {
     currentlyCart.articles.forEach((product)=>{
         console.log(product)
         const {id, name, count, unitCost, currency, image} = product;
-        cartHTML += `<tr class="cart">
+        cartHTML += `<tr class="cart-product">
         <td > <img src="${image}" alt="img" onClick="setProdID(${id})" class="click"></td>
         <td>${name}</td>
         <td>${currency} ${unitCost}</td>

@@ -174,9 +174,7 @@ footer p {
   display: block;
 }
 
-.signin{
-  background-color: #f8f9fa;
-}
+
 
 #spinner-wrapper {
   position: fixed;
@@ -201,36 +199,43 @@ a.custom-card:hover {
 
 /* login */
 
-/* product-info */
-
-.addComments div{
-  margin-bottom: 1em;
-  margin-top: 1em;
+.signin{
+  background-color: #f8f9fa;
 }
 
-.product-info h1 {
-  margin-bottom: 0.5em;
-  margin-top: 1em;
+/* product-info */
+
+.product-info, .cart{
+  width: 100%;
+  max-width: 80%;
+  padding: 15px;
+  margin: auto;
+  display: block;
+}
+
+.comment div{
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+
+.comment{
+  width: 100%;
+  margin: auto;
+}
+
+.product-info h1 , .cart h1 {
   text-align: center;
   font-weight: 600;
 }
 
-.product-info h2 {
-  margin-bottom: 1em;
+.product-info h2, .cart h2 {
+  margin-bottom: 15px;
   text-align: center;
 }
 
-.product-info .image {
-  max-width: 40em;
-  display: block;
-}
-
-.product-info .image img {
+.product-info h3, .cart h3 {
   text-align: center;
-  margin: auto;
-  justify-content: center;
 }
-
 
 .checked {
   color: rgb(255, 189, 6);
@@ -248,17 +253,18 @@ h5 .warning{
   color: rgb(185, 144, 30);
 }
 
-.product-info hr {
-  margin-top: 3em;
-  margin-bottom: 3em;
+.product-info hr , 
+.cart hr {
+  margin-bottom: 15px;
 }
 
 .carousel-images{
-  max-width: 40em;
+  max-width: 30rem;
 }
 
 .hover:hover {
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.342);
+  cursor: pointer;
 }
 
 .hover-control:hover {
@@ -267,11 +273,11 @@ h5 .warning{
 
 /* Carrito */
 
-.cart img {
-  width: 6em;
+.cart-product img {
+  width: 10em;
 }
 
-.cart input{
+.cart-product input{
   width: 4em;
 }
 
