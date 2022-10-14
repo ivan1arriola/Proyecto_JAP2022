@@ -174,9 +174,8 @@ footer p {
   display: block;
 }
 
-.signin img {
-  padding: 5px;
-  max-width: 100%;
+.signin{
+  background-color: #f8f9fa;
 }
 
 #spinner-wrapper {

@@ -17,48 +17,49 @@
 
   <main class="mt-5">
 
-    <div class="container signin">
+    <div class="container signin card">
 
-        <div class="">
-          <img class="vw-100"  src="./img/login.png" alt="Imagen de login">
+
+      <img class="card-img" src="./img/login.png" alt="Imagen de login">
+
+
+      <div class="">
+        <h2 class="form-style">Inicio de Sesion <b id="version"></b></h2>
+      </div>
+
+      <div>
+
+        <div>
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email">
+        </div>
+        <div>
+          <label for="password" class="form-label">Contraseña</label>
+          <input type="password" class="form-control" id="password">
+        </div>
+        <div>
+          <button class="btn btn-primary" type="button" id="ingBtn">Ingresar</button>
         </div>
 
-        <div class=" ">
-          <h2 class="form-style">Inicio de Sesion <b id="version"></b></h2>
-        </div>
+      </div>
 
-        <div class="  ">
-          <div class="form-group">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email">
+      <div>
+
+        <div class="d-flex justify-content-center p-0">
+
+          <div id="g_id_onload"
+            data-client_id="278086413124-nh0322hh310mccol76ktrog82vc0iu3u.apps.googleusercontent.com"
+            data-context="signup" data-ux_mode="popup" data-callback="inicioSesionGoogle" data-nonce="">
           </div>
-          <div class="form-group">
-            <label for="password" class="form-label">Contraseña</label>
-            <input type="password" class="form-control" id="password">
-          </div>
-          <div class="form-group">
-            <button class="btn btn-primary" type="button" id="ingBtn">Ingresar</button>
+
+          <div class="g_id_signin" data-type="standard" data-shape="pill" data-theme="filled_black"
+            data-text="$ {button.text}" data-size="large" data-logo_alignment="left" data-width="200">
           </div>
 
         </div>
 
-        <div class="  ">
 
-          <div class="d-flex justify-content-center p-0">
-
-            <div id="g_id_onload"
-              data-client_id="278086413124-nh0322hh310mccol76ktrog82vc0iu3u.apps.googleusercontent.com"
-              data-context="signup" data-ux_mode="popup" data-callback="inicioSesionGoogle" data-nonce="">
-            </div>
-
-            <div class="g_id_signin" data-type="standard" data-shape="pill" data-theme="filled_black"
-              data-text="$ {button.text}" data-size="large" data-logo_alignment="left" data-width="200">
-            </div>
-
-          </div>
-
-
-        </div>
+      </div>
 
 
 
