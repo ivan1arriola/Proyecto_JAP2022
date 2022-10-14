@@ -14,11 +14,6 @@ const sortBySoldCountBtn = document.getElementById("sortBySoldCountBtn");
 const cleanRangeFilterBtn = document.getElementById("clearRangeFilter");
 const rangeFilterCountBtn = document.getElementById("rangeFilterCount");
 
-const setProdID = (id) => {
-    localStorage.setItem("prodID", id);
-    window.location = "product-info.html"
-}
-
 function showCatList() {
 
     let htmlContentToAppend = "";

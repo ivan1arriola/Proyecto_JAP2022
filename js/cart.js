@@ -21,7 +21,7 @@ const showCart = () => {
         console.log(product)
         const {id, name, count, unitCost, currency, image} = product;
         cartHTML += `<tr class="cart">
-        <td> <img src="${image}" alt="img"></td>
+        <td > <img src="${image}" alt="img" onClick="setProdID(${id})" class="click"></td>
         <td>${name}</td>
         <td>${currency} ${unitCost}</td>
         <td><input type="number" value=${count}  id="count${id}" oninput="subtotal(${id}, ${unitCost})"></td>

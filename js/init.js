@@ -18,6 +18,11 @@ const loginOut = () => {
   location.reload();
 };
 
+const setProdID = (id) => {
+  localStorage.setItem("prodID", id);
+  window.location = "product-info.html"
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   if (
     USER == null ||
@@ -62,6 +67,7 @@ const addToCart = (newArticle, aumentar = true) => {
     cart.articles[articleIndex].count++;
   }
   localStorage.setItem("cart", JSON.stringify(cart));
+  aumentar ? window.location="cart.html": null;
 }
 
 let showSpinner = function () {
