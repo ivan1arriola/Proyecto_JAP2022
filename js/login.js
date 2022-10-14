@@ -28,9 +28,8 @@ globalThis.inicioSesionGoogle = (response) => {
     //console.log('Family Name: ' + responsePayload.family_name);
     //console.log("Image URL: " + responsePayload.picture);
     //console.log("Email: " + responsePayload.email);
-
-    localStorage.setItem('user', responsePayload.email);
-    loginIn(responsePayload.email)
+    
+    loginIn(responsePayload.name)
 }
 
 
