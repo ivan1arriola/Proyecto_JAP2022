@@ -70,12 +70,15 @@ let cart = getCart();
 
 const addToCart = (newArticle, aumentar = true) => {
   let articleIndex = cart.articles.findIndex((article) => article.id == newArticle.id);
-  if (articleIndex < 0) {
+  if (articleIndex < 0) {  
+    // index -1 = no se encuentra article en cart
     cart.articles.push(newArticle);
   }
-  else if (aumentar) {
+  else if (aumentar) { 
+    //si ya está en el carro, se aumenta la cantidad del producto (salvo se espefique que no)
     cart.articles[articleIndex].count++;
   }
+  // se actualiza cart en localStorage
   localStorage.setItem("cart", JSON.stringify(cart));
 }
 
