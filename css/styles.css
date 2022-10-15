@@ -207,7 +207,7 @@ a.custom-card:hover {
 
 .product-info, .cart{
   width: 100%;
-  max-width: 80%;
+  max-width: 90%;
   padding: 15px;
   margin: auto;
   display: block;
@@ -225,7 +225,6 @@ a.custom-card:hover {
 
 .product-info h1 , .cart h1 {
   text-align: center;
-  font-weight: 600;
 }
 
 .product-info h2, .cart h2 {

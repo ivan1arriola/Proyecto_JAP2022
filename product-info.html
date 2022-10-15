@@ -43,42 +43,43 @@
       </div>
     </div>
   </nav>
-  <main>
-    <div class="container product-info">
+  <main class="pb-5 product-info">
 
-      <div class="d-flex align-items-center justify-content-around">
-        <h1 id="product-name">
-        </h1>
-        <div>
-          <!-- Button trigger modal -->
-          <button id="btn-addToCart" type="button" class="btn btn-success" data-bs-toggle="modal"
-            data-bs-target="#compra">
-            Agregar al Carrito
-          </button>
+    <div class="d-flex align-items-center justify-content-around">
+      <h1 id="product-name">
+      </h1>
+      <div>
+        <!-- Button trigger modal -->
+        <button id="btn-addToCart" type="button" class="btn btn-success" data-bs-toggle="modal"
+          data-bs-target="#compra">
+          Agregar al Carrito
+        </button>
 
-          <!-- Modal -->
-          <div class="modal fade" id="compra" tabindex="-1" aria-labelledby="compra-label" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="compra-label">Se ha agregado <b id="product-name-modal">producto</b> al
-                    carrito</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  Si desea ver el carrito, haga click en ver carrito. <br>
-                  Cierre esta ventana para seguir navegando.
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                  <button type="button" class="btn btn-info" onClick="goToCart()">Ver Carrito</button>
-                </div>
+        <!-- Modal -->
+        <div class="modal fade" id="compra" tabindex="-1" aria-labelledby="compra-label" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="compra-label">Se ha agregado <b id="product-name-modal">producto</b> al
+                  carrito</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                Si desea ver el carrito, haga click en ver carrito. <br>
+                Cierre esta ventana para seguir navegando.
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-info" onClick="goToCart()">Ver Carrito</button>
               </div>
             </div>
           </div>
         </div>
-
       </div>
+
+    </div>
+
+    <div class="container">
 
       <hr />
 

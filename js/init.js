@@ -9,6 +9,9 @@ const CART_INFO_URL = "https://japceibal.github.io/emercado-api/user_cart/";
 const CART_BUY_URL = "https://japceibal.github.io/emercado-api/cart/buy.json";
 const EXT_TYPE = ".json";
 
+
+/* Funciones para manejo de sesión */
+
 const USER = localStorage.getItem("user");
 const userID = 25801;
 const LOGIN = "login.html";
@@ -23,7 +26,6 @@ const setProdID = (id) => {
   window.location = "product-info.html"
 }
 
-const goToCart = () => window.location = "cart.html"
 
 document.addEventListener("DOMContentLoaded", function () {
   if (
@@ -38,6 +40,12 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
+
+
+/* Funciones para manejo de carrito*/
+
+const goToCart = () => window.location = "cart.html"
+
 const getCart = () => {
   let cart = localStorage.getItem("cart");
   if (
@@ -46,12 +54,12 @@ const getCart = () => {
     cart == "undefined" ||
     cart == undefined
   ) {
-    newCart = {
+    emptyCart = {
       user: userID,
       articles: []
     };
-    localStorage.setItem("cart", JSON.stringify(newCart));
-    return newCart;
+    localStorage.setItem("cart", JSON.stringify(emptyCart));
+    return emptyCart;
   } else {
     cart = JSON.parse(cart);
     return cart;
@@ -70,6 +78,9 @@ const addToCart = (newArticle, aumentar = true) => {
   }
   localStorage.setItem("cart", JSON.stringify(cart));
 }
+
+
+//-------------------------------------------------------------------
 
 let showSpinner = function () {
   document.getElementById("spinner-wrapper").style.display = "block";
