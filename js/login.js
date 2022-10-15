@@ -8,6 +8,16 @@ const loginIn = (user) => {
     window.location = INDEX; 
 }
 
+const showAlert = () => {
+    document.getElementById("wrongInput").style.visibility = "visible";
+}
+
+const hideAlert = () => {
+    document.getElementById("wrongInput").style.visibility = "hidden";
+}
+
+
+
 // https://stackoverflow.com/questions/71686512/gsi-logger-the-value-of-callback-is-not-a-function-configuration-ignored
 function decodeJwtResponse(token) { 
     let base64Url = token.split('.')[1]
@@ -48,10 +58,6 @@ const isComplete = () => {
     return !isEmpty;
 };
 
-const showAlertError = () => {
-    alert(ERROR)
-};
-
 document.addEventListener("DOMContentLoaded", function(){
 
     document.getElementById("ingBtn").addEventListener("click", () => {
@@ -59,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function(){
         if (isComplete()){
             loginIn(document.getElementById('email').value);
         } else {
-            showAlertError();
+            showAlert();
         }
     });
     
