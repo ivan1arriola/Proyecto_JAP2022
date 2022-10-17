@@ -14,6 +14,10 @@ let UYU_to_USA;
 
 let currentlyCart = getCart();
 
+const submitRadios = () => {
+
+}
+
 
 const subtotal = (id, unitCost) => {
     let amount = document.getElementById("count"+id).value;
@@ -48,6 +52,8 @@ const subtotalAll = () => {
     document.getElementById("subtotalAll").innerHTML= (uyuCost * UYU_to_USA + usdCost).toFixed(2);
 
 
+
+
 }
 
 const showCart = () => {
@@ -70,18 +76,19 @@ const showCart = () => {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-
-    getJSONData(DOLAR_API).then(function (value) {
-        if (value.status === "ok") {
-            UYU_to_USA = 1/value.data.rates.USD.sell
-        }
-    })
     
     getJSONData(CART_URL).then(function (cart) {
         if (cart.status === "ok") {
             addToCart( cart.data.articles[0], false)
             currentlyCart = getCart();
             showCart()
+            
+        }
+    })
+
+    getJSONData(DOLAR_API).then(function (value) {
+        if (value.status === "ok") {
+            UYU_to_USA = 1/value.data.rates.USD.sell
             subtotalAll()
         }
     })
