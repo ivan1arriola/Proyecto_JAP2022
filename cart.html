@@ -53,7 +53,7 @@
 
     <div class="container">
 
-      
+
       <div>
         <h2>Artículos a comprar</h2>
       </div>
@@ -69,6 +69,7 @@
               <th scope="col">Costo</th>
               <th scope="col">Cantidad</th>
               <th scope="col">Subtotal</th>
+              <th scope="col">Acciones</th>
             </tr>
           </thead>
           <tbody id="list">
@@ -78,7 +79,7 @@
 
       </div>
 
-  <hr>
+      <hr>
 
       <div id="shipping">
         <div>
@@ -132,6 +133,100 @@
             </div>
           </form>
         </div>
+
+        <hr>
+
+        <div>
+          <h2>Costos</h2>
+        </div>
+
+        <div>
+          <div class="list-group">
+            <div class="list-group-item ">
+              <div class="d-flex w-100 justify-content-between">
+                <div>
+
+                  <h5 class="mb-1">Subtotal</h5>
+                  <p class="mb-1">Costo unitario del producto por cantidad</p>
+
+                </div>
+
+                <p> <b>USA $<span id="subtotalAll">0</span></b> </p>
+
+              </div>
+
+
+            </div>
+            <div class="list-group-item ">
+              <div class="d-flex w-100 justify-content-between">
+                <div>
+                  <h5 class="mb-1">Costo de Envio</h5>
+                  <p class="mb-1">Segun el tipo de envio</p>
+                  
+                </div>
+                
+                <p> <b>USA $<span id="shipping-cost">0</b> </b>
+
+              </div>
+              
+
+            </div>
+            <div class="list-group-item ">
+              <div class="d-flex w-100 justify-content-between">
+                <div>
+
+                  <h5 class="mb-1">Total ($)</h5>
+
+                </div>
+                
+                <p>
+                  <b>USA $<span id="total">0</span> </b>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr>
+
+        <div>
+          <h2>Forma de Pago</h2>
+        </div>
+
+        <div>
+          <p>
+            <span id="formaDePago">No se ha seleccionado</span>
+            <a href="" data-bs-toggle="modal" data-bs-target="#formaDePagoModal">
+              Seleccionar
+            </a>
+          </p>
+
+          <div class="modal fade" id="formaDePagoModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="modalLabel">Modal title</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  ...
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="d-grid gap-2 mt-5">
+          <button type="button" name="" id="submitPurchase " class="btn btn-primary">Finalizar Compra</button>
+        </div>
+
+
       </div>
     </div>
   </main>
