@@ -3,7 +3,8 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1,
+      shrink-to-fit=no">
   <title>eMercado - Todo lo que busques está aquí</title>
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -16,7 +17,8 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle
+          navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
@@ -36,7 +38,8 @@
             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="user">
               <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
               <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
-              <li><button class="dropdown-item" onclick="loginOut()">Cerrar sesión</a></li>
+              <li><button class="dropdown-item" onclick="loginOut()">Cerrar
+                  sesión</a></li>
             </ul>
           </li>
         </ul>
@@ -88,20 +91,23 @@
         </div>
 
         <div class="">
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="shippingOption" id="premium" value="premium">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="shippingOption" id="premium" onclick="subtotalAll()"
+              value="0.15">
             <label class="form-check-label" for="premium">
               Premium 3 a 5 días (15%)
             </label>
           </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="shippingOption" id="express" value="express">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="shippingOption" id="express" onclick="subtotalAll()"
+              value="0.07">
             <label class="form-check-label" for="express">
               Express 5 a 8 días (7%)
             </label>
           </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="shippingOption" id="standard" value="standard" checked>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="shippingOption" id="standard" onclick="subtotalAll()"
+              value="0.05" checked>
             <label class="form-check-label" for="standard">
               Standard 12 a 15 días (5%)
             </label>
@@ -149,11 +155,9 @@
 
                   <h5 class="mb-1">Subtotal</h5>
                   <p class="mb-1">Costo unitario del producto por cantidad</p>
-
                 </div>
 
-                <p class="display-6"> <b>USA $<span id="subtotalAll">0</span></b> </p>
-
+                <p> <b>USA $<span id="subtotalAll">0.00</span></b> </p>
               </div>
 
 
@@ -163,13 +167,13 @@
                 <div>
                   <h5 class="mb-1">Costo de Envio</h5>
                   <p class="mb-1">Segun el tipo de envio</p>
-                  
+
                 </div>
-                
-                <p class="display-6"> <b>USA $<span id="shipping-cost">0</b> </b>
+
+                <p> <b>USA $<span id="shipping-cost">0.00</b> </b>
 
               </div>
-              
+
 
             </div>
             <div class="list-group-item ">
@@ -179,9 +183,9 @@
                   <h5 class="mb-1">Total ($)</h5>
 
                 </div>
-                
-                <p class="display-6">
-                  <b>USA $<span id="total">0</span> </b>
+
+                <p>
+                  <b>USA $<span id="total">0.00</span> </b>
                 </p>
               </div>
             </div>
@@ -214,7 +218,8 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
+                  <button type="button" class="btn btn-primary">Save
+                    changes</button>
                 </div>
               </div>
             </div>
@@ -224,7 +229,8 @@
         <hr>
 
         <div class="d-grid gap-2 mt-5">
-          <button type="button" name="" id="submitPurchase " class="btn btn-primary">Finalizar Compra</button>
+          <button type="button" name="" id="submitPurchase " class="btn
+                  btn-primary">Finalizar Compra</button>
         </div>
 
 
@@ -236,9 +242,11 @@
       <p class="float-end">
         <a href="#">Volver arriba</a>
       </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a> -
+      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes
+          a Programar</a> -
         2022</p>
-      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para
+        descargar la letra del obligatorio.</p>
     </div>
   </footer>
   <div id="spinner-wrapper">
