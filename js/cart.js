@@ -65,7 +65,7 @@ const subtotalAll = () => {
 
   document.getElementById("dolar").innerHTML = dolarValue;
   document.getElementById("subtotalAll").innerHTML = cost.toFixed(2);
-  document.getElementById("shipping-cost").innerHTML = shippingCost.toFixed(2);
+  document.getElementById("shippingCost").innerHTML = shippingCost.toFixed(2);
   document.getElementById("total").innerHTML = total.toFixed(2);
 };
 
@@ -74,20 +74,20 @@ const showCart = () => {
   currentlyCart.articles.forEach((product) => {
     const { id, name, count, unitCost, currency, image } = product;
     cartHTML += `
-            <div class="list-group-item list-group-item-action text-center cart-product">
+            <div class="list-group-item list-group-item-action  cart-product">
                 <div class="row ">
                     <div class="col-sm mb-2">
                         <img src="${image}" alt="${name}" class="img-thumbnail" onclick="setProdID(${id})">
                     </div>
-                    <div class="col">
+                    <div class="col-sm text-center text-sm-start text-sm-start ">
                         <div>
-                            <h4 class="mb-1 text-uppercase fw-bold">${name}</h4>
+                          <h4 class="mb-1 fw-bold">${name}</h4>
+                          <p class="mb-1 fs-4">${currency} ${unitCost}</p>
+                          <p>Cantidad: <input id="count${id}" class="form-control" type="number" value="${count}" min="1" onchange="subtotal(${id}, ${unitCost})"></p>
                         </div>
-                        <p class="mb-1 fs-4">${currency} ${unitCost}</p>
-                        <p>Cantidad: <input id="count${id}" class="form-control" type="number" value="${count}" min="1" onchange="subtotal(${id}, ${unitCost})"></p>
                     </div>
-                    <div class="col">
-                        <p class="mb-1 fs-3">Subtotal: <br/> ${currency} <span id="subtotal${id}">${count * unitCost}</span></p>
+                    <div class="col text-center">
+                        <p class="mb-1 fs-3 ">Subtotal: <br/> ${currency} <span class="fw-bold" id="subtotal${id}">${count * unitCost}</span></p>
                         <button class="btn btn-danger" onclick="deleteItem(${id})">Eliminar</button>
                     </div>
                 </div>
