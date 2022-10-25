@@ -273,14 +273,15 @@ h5 .warning{
 
 /* Carrito */
 
-.cart-product img {
-  width: 10em;
-}
-
 .cart-product input{
-  width: 4em;
+  text-align: center;
 }
 
 .click:hover {
   cursor:pointer;
+}
+
+.costos p {
+  margin-bottom: 0;
+  font-size: larger;
 }

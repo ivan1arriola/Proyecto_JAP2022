@@ -9,7 +9,6 @@ const CART_INFO_URL = "https://japceibal.github.io/emercado-api/user_cart/";
 const CART_BUY_URL = "https://japceibal.github.io/emercado-api/cart/buy.json";
 const EXT_TYPE = ".json";
 
-
 /* Funciones para manejo de sesión */
 
 const USER = localStorage.getItem("user");
@@ -23,9 +22,8 @@ const loginOut = () => {
 
 const setProdID = (id) => {
   localStorage.setItem("prodID", id);
-  window.location = "product-info.html"
-}
-
+  window.location = "product-info.html";
+};
 
 document.addEventListener("DOMContentLoaded", function () {
   if (
@@ -40,11 +38,9 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-
-
 /* Funciones para manejo de carrito*/
 
-const goToCart = () => window.location = "cart.html"
+const goToCart = () => (window.location = "cart.html");
 
 const getCart = () => {
   let cart = localStorage.getItem("cart");
@@ -56,7 +52,7 @@ const getCart = () => {
   ) {
     emptyCart = {
       user: userID,
-      articles: []
+      articles: [],
     };
     localStorage.setItem("cart", JSON.stringify(emptyCart));
     return emptyCart;
@@ -64,24 +60,24 @@ const getCart = () => {
     cart = JSON.parse(cart);
     return cart;
   }
-}
+};
 
 let cart = getCart();
 
 const addToCart = (newArticle, aumentar = true) => {
-  let articleIndex = cart.articles.findIndex((article) => article.id == newArticle.id);
-  if (articleIndex < 0) {  
+  let articleIndex = cart.articles.findIndex(
+    (article) => article.id == newArticle.id
+  );
+  if (articleIndex < 0) {
     // index -1 = no se encuentra article en cart
     cart.articles.push(newArticle);
-  }
-  else if (aumentar) { 
+  } else if (aumentar) {
     //si ya está en el carro, se aumenta la cantidad del producto (salvo se espefique que no)
     cart.articles[articleIndex].count++;
   }
   // se actualiza cart en localStorage
   localStorage.setItem("cart", JSON.stringify(cart));
-}
-
+};
 
 //-------------------------------------------------------------------
 

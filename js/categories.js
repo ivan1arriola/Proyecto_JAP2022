@@ -7,9 +7,6 @@ let minCount = undefined;
 let maxCount = undefined;
 
 
-
-
-
 function sortCategories(criteria, array){
     let result = [];
     if (criteria === ORDER_ASC_BY_NAME)
@@ -29,13 +26,11 @@ function sortCategories(criteria, array){
         result = array.sort(function(a, b) {
             let aCount = parseInt(a.productCount);
             let bCount = parseInt(b.productCount);
-
             if ( aCount > bCount ){ return -1; }
             if ( aCount < bCount ){ return 1; }
             return 0;
         });
     }
-
     return result;
 }
 

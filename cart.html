@@ -63,24 +63,8 @@
       </div>
 
 
-      <div class="table-responsive">
-
-        <table class="table ">
-          <thead>
-            <tr>
-              <th scope="col">Producto</th>
-              <th scope="col">Nombre</th>
-              <th scope="col">Costo</th>
-              <th scope="col">Cantidad</th>
-              <th scope="col">Subtotal</th>
-              <th scope="col"></th>
-            </tr>
-          </thead>
-          <tbody id="list">
-            <!--- js -->
-          </tbody>
-        </table>
-
+      <div id="list">
+        <!-- Aquí se insertan los productos -->
       </div>
 
       <hr>
@@ -147,49 +131,47 @@
           <h2>Costos</h2>
         </div>
 
+        
+
         <div>
-          <div class="list-group">
+
+          <div class="list-group costos">
+
             <div class="list-group-item ">
               <div class="d-flex w-100 justify-content-between">
                 <div>
-
                   <h5 class="mb-1">Subtotal</h5>
                   <p class="mb-1">Costo unitario del producto por cantidad</p>
                 </div>
-
-                <p> <b>USA $<span id="subtotalAll">0.00</span></b> </p>
+                <p> USA $<span id="subtotalAll">0.00</span> </p>
               </div>
-
-
             </div>
+
             <div class="list-group-item ">
               <div class="d-flex w-100 justify-content-between">
                 <div>
                   <h5 class="mb-1">Costo de Envio</h5>
                   <p class="mb-1">Segun el tipo de envio</p>
-
                 </div>
-
-                <p> <b>USA $<span id="shipping-cost">0.00</b> </b>
-
+                <p> USA $<span id="shipping-cost">0.00</span> </p>
               </div>
-
-
             </div>
+
             <div class="list-group-item ">
               <div class="d-flex w-100 justify-content-between">
                 <div>
-
                   <h5 class="mb-1">Total ($)</h5>
-
                 </div>
-
-                <p>
-                  <b>USA $<span id="total">0.00</span> </b>
-                </p>
+                <p> USA $<span id="total">0.00</span> </p>
               </div>
             </div>
+
           </div>
+
+          <div class="mb-2">
+            <small class="text-muted"> USA $1 = UYU $<span id="dolar"></span> </small>
+          </div>
+          
         </div>
 
         <hr>

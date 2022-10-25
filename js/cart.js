@@ -10,7 +10,7 @@ const CART_URL = CART_INFO_URL + userID + EXT_TYPE;
  *  Euro
  */
 const DOLAR_API = "https://cotizaciones-brou.herokuapp.com/api/currency/latest";
-let UYU_to_USA;
+let dolarValue;
 
 let currentlyCart = getCart();
 
@@ -20,12 +20,12 @@ const deleteItem = (itemID) => {
     // index -1 significa que no hay item para eliminar
     currentlyCart.articles.splice(itemIndex, 1);
   } else {
-    console.error('No se encuentra el producto');
+    console.error("No se encuentra el producto");
   }
   // se actualiza cart en localStorage
   localStorage.setItem("cart", JSON.stringify(currentlyCart));
   showCart();
-  subtotalAll()
+  subtotalAll();
 };
 
 const getShippingCost = (cost) => {
@@ -48,21 +48,22 @@ const subtotal = (id, unitCost) => {
 };
 
 const subtotalAll = () => {
-  let usdCost = 0;
-  let uyuCost = 0;
+  let dolarCost = 0;
+  let pesoCost = 0;
 
   currentlyCart.articles.forEach(({ count, unitCost, currency }) => {
     if (currency == "UYU") {
-      uyuCost += count * unitCost;
+      pesoCost += count * unitCost;
     } else {
-      usdCost += count * unitCost;
+      dolarCost += count * unitCost;
     }
   });
 
-  const cost = uyuCost * UYU_to_USA + usdCost;
+  const cost = pesoCost / dolarValue + dolarCost;
   const shippingCost = getShippingCost(cost);
   const total = cost + shippingCost;
 
+  document.getElementById("dolar").innerHTML = dolarValue;
   document.getElementById("subtotalAll").innerHTML = cost.toFixed(2);
   document.getElementById("shipping-cost").innerHTML = shippingCost.toFixed(2);
   document.getElementById("total").innerHTML = total.toFixed(2);
@@ -72,17 +73,26 @@ const showCart = () => {
   let cartHTML = ``;
   currentlyCart.articles.forEach((product) => {
     const { id, name, count, unitCost, currency, image } = product;
-    cartHTML += `<tr class="cart-product">
-        <td > <img src="${image}" alt="img" onClick="setProdID(${id})" class="click"></td>
-        <td>${name}</td>
-        <td>${currency} ${unitCost}</td>
-        <td><input type="number" value=${count}  id="count${id}" oninput="subtotal(${id}, ${unitCost})"></td>
-        <td> <b>${currency} <span id="subtotal${id}"> ${
-      unitCost * count
-    } </span> </b> </td>
-        <td> <button id="delete${id}" type="button" class="btn btn-danger" onclick='deleteItem(${id})'><span class="fa fa-trash"></span>
-        </button> </td>
-      </tr>`;
+    cartHTML += `
+            <div class="list-group-item list-group-item-action text-center cart-product">
+                <div class="row ">
+                    <div class="col-sm mb-2">
+                        <img src="${image}" alt="${name}" class="img-thumbnail" onclick="setProdID(${id})">
+                    </div>
+                    <div class="col">
+                        <div>
+                            <h4 class="mb-1 text-uppercase fw-bold">${name}</h4>
+                        </div>
+                        <p class="mb-1 fs-4">${currency} ${unitCost}</p>
+                        <p>Cantidad: <input id="count${id}" class="form-control" type="number" value="${count}" min="1" onchange="subtotal(${id}, ${unitCost})"></p>
+                    </div>
+                    <div class="col">
+                        <p class="mb-1 fs-3">Subtotal: <br/> ${currency} <span id="subtotal${id}">${count * unitCost}</span></p>
+                        <button class="btn btn-danger" onclick="deleteItem(${id})">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+    `;
   });
   document.getElementById("list").innerHTML = cartHTML;
 };
@@ -98,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   getJSONData(DOLAR_API).then(function (value) {
     if (value.status === "ok") {
-      UYU_to_USA = 1 / value.data.rates.USD.sell;
+      dolarValue = value.data.rates.USD.sell;
       subtotalAll();
     }
   });

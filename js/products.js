@@ -139,9 +139,3 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
 });
 
-/* Con el listado de productos desplegado:
-    Aplicar filtros a partir de rango de precio definido.
-    Agregar las funcionalidades de orden ascendente y descendente en función del precio 
-    y descendente en función de la relevancia (tomaremos para ello la cantidad de artículos vendidos)
-*/
-
