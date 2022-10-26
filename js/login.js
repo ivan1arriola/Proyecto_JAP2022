@@ -4,7 +4,7 @@ const ERROR =
 
 const ids = ["email", "password"];
 
-("use strict");
+
 
 // Fetch all the forms we want to apply custom Bootstrap validation styles to
 var forms = document.querySelectorAll(".needs-validation");
@@ -32,7 +32,7 @@ const logIn = (user) => {
   window.location = INDEX;
 };
 
-// https://stackoverflow.com/questions/71686512/gsi-logger-the-value-of-callback-is-not-a-function-configuration-ignored
+/**  https://stackoverflow.com/questions/71686512/gsi-logger-the-value-of-callback-is-not-a-function-configuration-ignored */
 function decodeJwtResponse(token) {
   let base64Url = token.split(".")[1];
   let base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
@@ -47,7 +47,7 @@ function decodeJwtResponse(token) {
   return JSON.parse(jsonPayload);
 }
 
-globalThis.inicioSesionGoogle = (response) => {
+globalThis.inicioConGoogle = (response) => {
   const responsePayload = decodeJwtResponse(response.credential);
 
   perfilInfo = {
