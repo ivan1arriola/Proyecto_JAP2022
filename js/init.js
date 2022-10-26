@@ -26,7 +26,7 @@ const setProdID = (id) => {
 };
 
 document.addEventListener("DOMContentLoaded", function () {
-  if ( USER == null || USER == undefined || USER == "null" || USER == "undefined" ) {
+  if (!Boolean(USER)) {
     window.location = LOGIN;
   } else {
     document.getElementById("user").innerHTML = USER;
@@ -40,12 +40,7 @@ const goToCart = () => (window.location = "cart.html");
 
 const getCart = () => {
   let cart = localStorage.getItem("cart");
-  if (
-    cart == null ||
-    cart == "null" ||
-    cart == "undefined" ||
-    cart == undefined
-  ) {
+  if (!Boolean(cart)) {
     emptyCart = {
       user: userID,
       articles: [],
