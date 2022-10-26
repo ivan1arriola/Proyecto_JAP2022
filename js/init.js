@@ -26,7 +26,7 @@ const setProdID = (id) => {
 };
 
 document.addEventListener("DOMContentLoaded", function () {
-  if (Boolean(USER)) {
+  if (!Boolean(USER)) {
     window.location = LOGIN;
   } else {
     document.getElementById("user").innerHTML = USER;
