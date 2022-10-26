@@ -26,12 +26,7 @@ const setProdID = (id) => {
 };
 
 document.addEventListener("DOMContentLoaded", function () {
-  if (
-    USER == null ||
-    USER == "null" ||
-    USER == "undefined" ||
-    USER == undefined
-  ) {
+  if (Boolean(USER)) {
     window.location = LOGIN;
   } else {
     document.getElementById("user").innerHTML = USER;
