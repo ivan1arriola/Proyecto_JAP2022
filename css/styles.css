@@ -277,11 +277,11 @@ h5 .warning{
   text-align: center;
 }
 
-.click:hover {
-  cursor:pointer;
+.cart-product{
+  margin-bottom: 15px;
 }
 
-.costos p {
-  margin-bottom: 0;
-  font-size: larger;
+.cart-product img{
+  max-width: 90%;
+  cursor:pointer;
 }

@@ -1,28 +1,47 @@
+
+/** La función "setProdID" se encarga de guardar el ID del producto en el localStorage
+para luego ser utilizado en la pagina "product-info.html" */
+/** La función "addToCart" se encuentra en el archivo "init.js" */
+/** La función "getCart" se encuentra en el archivo "init.js" */
+
 const CART_URL = CART_INFO_URL + userID + EXT_TYPE;
 
-/***
- * https://github.com/gmanriqueUy/cotizaciones-brou
- * Este proyecto implementa una REST API abierta (alojada en Heroku) que puede ser utilizada
- * para obtener cotizaciones de las siguientes monedas en Pesos Uruguayos:
- *  Dólar Estadounidense
- *  Peso Argentino
- *  Real Brasileño
- *  Euro
- */
-const DOLAR_API = "https://cotizaciones-brou.herokuapp.com/api/currency/latest";
 let dolarValue;
-
 let currentlyCart = getCart();
+
+// El carrito de compras ha sido inicializado?
+const initialized = localStorage.getItem("initialized") || false;
+
+document.addEventListener("DOMContentLoaded", () => {
+  getJSONData(CART_URL).then(function (cart) {
+    if (cart.status === "ok") {
+      if(!initialized) {
+        addToCart(cart.data.articles[0]);
+        window.localStorage.setItem("initialized", true);
+      }
+      currentlyCart = getCart();
+      showCart();
+    }
+  });
+
+  getJSONData(DOLAR_API).then(function (value) {
+    if (value.status === "ok") {
+      dolarValue = value.data.rates.USD.sell;
+      subtotalAll();
+    }
+  });
+});
+
 
 const deleteItem = (itemID) => {
   let itemIndex = currentlyCart.articles.findIndex((item) => item.id == itemID);
   if (itemIndex > -1) {
-    // index -1 significa que no hay item para eliminar
+    // Elimina el elemento del array
     currentlyCart.articles.splice(itemIndex, 1);
   } else {
-    console.error("No se encuentra el producto");
+    console.log("No se encontró el elemento");
   }
-  // se actualiza cart en localStorage
+  // Guarda el array "currentlyCart" en el localStorage
   localStorage.setItem("cart", JSON.stringify(currentlyCart));
   showCart();
   subtotalAll();
@@ -82,12 +101,13 @@ const showCart = () => {
                     <div class="col-sm text-center text-sm-start text-sm-start ">
                         <div>
                           <h4 class="mb-1 fw-bold">${name}</h4>
-                          <p class="mb-1 fs-4">${currency} ${unitCost}</p>
-                          <p>Cantidad: <input id="count${id}" class="form-control" type="number" value="${count}" min="1" onchange="subtotal(${id}, ${unitCost})"></p>
+                          <p class="mb-1 fs-5">${currency} ${unitCost}</p>
+                          <p>Cantidad:</p>
+                          <input id="count${id}" class="form-control" type="number" value="${count}" min="1" onchange="subtotal(${id}, ${unitCost})">
                         </div>
                     </div>
                     <div class="col text-center">
-                        <p class="mb-1 fs-3 ">Subtotal: <br/> ${currency} <span class="fw-bold" id="subtotal${id}">${count * unitCost}</span></p>
+                        <p class="mb-1 fs-4 ">Subtotal: <br/> ${currency} <span class="fw-bold" id="subtotal${id}">${count * unitCost}</span></p>
                         <button class="btn btn-danger" onclick="deleteItem(${id})">Eliminar</button>
                     </div>
                 </div>
@@ -97,19 +117,3 @@ const showCart = () => {
   document.getElementById("list").innerHTML = cartHTML;
 };
 
-document.addEventListener("DOMContentLoaded", () => {
-  getJSONData(CART_URL).then(function (cart) {
-    if (cart.status === "ok") {
-      addToCart(cart.data.articles[0], false);
-      currentlyCart = getCart();
-      showCart();
-    }
-  });
-
-  getJSONData(DOLAR_API).then(function (value) {
-    if (value.status === "ok") {
-      dolarValue = value.data.rates.USD.sell;
-      subtotalAll();
-    }
-  });
-});

@@ -1,18 +1,18 @@
 const CATEGORIES_URL = "https://japceibal.github.io/emercado-api/cats/cat.json";
-const PUBLISH_PRODUCT_URL =
-  "https://japceibal.github.io/emercado-api/sell/publish.json";
+const PUBLISH_PRODUCT_URL = "https://japceibal.github.io/emercado-api/sell/publish.json";
 const PRODUCTS_URL = "https://japceibal.github.io/emercado-api/cats_products/";
 const PRODUCT_INFO_URL = "https://japceibal.github.io/emercado-api/products/";
-const PRODUCT_INFO_COMMENTS_URL =
-  "https://japceibal.github.io/emercado-api/products_comments/";
+const PRODUCT_INFO_COMMENTS_URL = "https://japceibal.github.io/emercado-api/products_comments/";
 const CART_INFO_URL = "https://japceibal.github.io/emercado-api/user_cart/";
 const CART_BUY_URL = "https://japceibal.github.io/emercado-api/cart/buy.json";
 const EXT_TYPE = ".json";
 
-/* Funciones para manejo de sesión */
+/** Api de cotización de dólares sacada de  */
+const DOLAR_API = "https://cotizaciones-brou.herokuapp.com/api/currency/latest";
 
+
+/* Funciones para manejo de sesión */
 const USER = localStorage.getItem("user");
-const userID = 25801;
 const LOGIN = "login.html";
 
 const loginOut = () => {
@@ -26,19 +26,15 @@ const setProdID = (id) => {
 };
 
 document.addEventListener("DOMContentLoaded", function () {
-  if (
-    USER == null ||
-    USER == "null" ||
-    USER == "undefined" ||
-    USER == undefined
-  ) {
+  if ( USER == null || USER == undefined || USER == "null" || USER == "undefined" ) {
     window.location = LOGIN;
   } else {
     document.getElementById("user").innerHTML = USER;
   }
 });
 
-/* Funciones para manejo de carrito*/
+/** Funciones para manejo de carrito*/
+const userID = 25801;
 
 const goToCart = () => (window.location = "cart.html");
 
@@ -64,18 +60,19 @@ const getCart = () => {
 
 let cart = getCart();
 
-const addToCart = (newArticle, aumentar = true) => {
+/* Funciones para manejo de carrito*/
+const addToCart = (newArticle) => {
   let articleIndex = cart.articles.findIndex(
     (article) => article.id == newArticle.id
   );
-  if (articleIndex < 0) {
-    // index -1 = no se encuentra article en cart
+  if (articleIndex < 0) { 
+    // El artículo no está en el carrito
     cart.articles.push(newArticle);
-  } else if (aumentar) {
-    //si ya está en el carro, se aumenta la cantidad del producto (salvo se espefique que no)
+  } else {
+    // El artículo ya está en el carrito
     cart.articles[articleIndex].count++;
   }
-  // se actualiza cart en localStorage
+  // Actualizo el carrito en el localStorage
   localStorage.setItem("cart", JSON.stringify(cart));
 };
 
