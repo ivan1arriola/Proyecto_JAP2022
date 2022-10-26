@@ -1,74 +1,65 @@
-
 const INDEX = "index.html";
-const ERROR = "Los datos ingresados no son validos, por favor, revise e intentelo denuevo";     
+const ERROR =
+  "Los datos ingresados no son validos, por favor, revise e inténtelo de nuevo";
 
+const ids = ["email", "password"];
 
-const loginIn = (user) => {
-    localStorage.setItem('user', user);
-    window.location = INDEX; 
-}
+("use strict");
 
-const showAlert = () => {
-    document.getElementById("wrongInput").style.visibility = "visible";
-}
+// Fetch all the forms we want to apply custom Bootstrap validation styles to
+var forms = document.querySelectorAll(".needs-validation");
 
-const hideAlert = () => {
-    document.getElementById("wrongInput").style.visibility = "hidden";
-}
+// Loop over them and prevent submission
+Array.prototype.slice.call(forms).forEach(function (form) {
+  console.log(form);
+  form.addEventListener(
+    "submit",
+    function (event) {
+      event.preventDefault();
+      event.stopPropagation();
+      if (form.checkValidity()) {
+        const user = document.getElementById("email").value;
+        logIn(user);
+      }
+      form.classList.add("was-validated");
+    },
+    false
+  );
+});
 
-
-
-// https://stackoverflow.com/questions/71686512/gsi-logger-the-value-of-callback-is-not-a-function-configuration-ignored
-function decodeJwtResponse(token) { 
-    let base64Url = token.split('.')[1]
-    let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    let jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
-    return JSON.parse(jsonPayload)
-}
-
-
-globalThis.inicioSesionGoogle = (response) => {
-    const responsePayload = decodeJwtResponse(response.credential);
-
-    perfilInfo = {
-        id: responsePayload.sub,
-        fullName: responsePayload.name,
-        givenName: responsePayload.given_name,
-        familyName: responsePayload.familyName,
-        imageUrl: responsePayload.picture,
-        email: responsePayload.email
-    }
-
-    localStorage.setItem("perfilInfo", JSON.stringify(perfilInfo));
-    
-    loginIn(responsePayload.name)
-}
-
-
-
-const isComplete = () => {
-    let arr = ["password", "email"];
-    let i = 0;
-    do {
-        isEmpty = document.getElementById(arr[i]).value == ''; 
-        i++ 
-    } while(!isEmpty && i < arr.length);
-    return !isEmpty;
+const logIn = (user) => {
+  localStorage.setItem("user", user);
+  window.location = INDEX;
 };
 
-document.addEventListener("DOMContentLoaded", function(){
+// https://stackoverflow.com/questions/71686512/gsi-logger-the-value-of-callback-is-not-a-function-configuration-ignored
+function decodeJwtResponse(token) {
+  let base64Url = token.split(".")[1];
+  let base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+  let jsonPayload = decodeURIComponent(
+    atob(base64)
+      .split("")
+      .map(function (c) {
+        return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+      })
+      .join("")
+  );
+  return JSON.parse(jsonPayload);
+}
 
-    document.getElementById("ingBtn").addEventListener("click", () => {
-        
-        if (isComplete()){
-            loginIn(document.getElementById('email').value);
-        } else {
-            showAlert();
-        }
-    });
-    
+globalThis.inicioSesionGoogle = (response) => {
+  const responsePayload = decodeJwtResponse(response.credential);
 
-    
-});
+  perfilInfo = {
+    id: responsePayload.sub,
+    fullName: responsePayload.name,
+    givenName: responsePayload.given_name,
+    familyName: responsePayload.familyName,
+    imageUrl: responsePayload.picture,
+    email: responsePayload.email,
+  };
+
+  localStorage.setItem("perfilInfo", JSON.stringify(perfilInfo));
+
+  logIn(responsePayload.name);
+};

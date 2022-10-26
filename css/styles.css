@@ -162,7 +162,6 @@ footer p {
   max-width: 330px;
   padding: 15px;
   margin: auto;
-  display: block;
 }
 .signin h2, .signin p{
   text-align: center;
@@ -171,7 +170,6 @@ footer p {
 .signin div {
   text-align: center;
   padding: 5px;
-  display: block;
 }
 
 

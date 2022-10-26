@@ -1,100 +1,127 @@
 <!DOCTYPE html>
 <html lang="es">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
 
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>eMercado - Todo lo que busques está aquí</title>
 
-  <title>eMercado - Todo lo que busques está aquí</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i"
+      rel="stylesheet"
+    />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="./img/login.png" type="image/png" />
+  </head>
 
-  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet">
-  <link rel="shortcut icon" href="./img/login.png" type="image/png">
+  <body>
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+      <symbol
+        id="exclamation-triangle-fill"
+        fill="currentColor"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
+        />
+      </symbol>
+    </svg>
 
-</head>
+    <main class="mt-5">
+      <div class="container signin card">
+        <img class="card-img" src="./img/login.png" alt="Imagen de login" />
 
-<body>
-
-  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
-      <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-    </symbol>
-  </svg>
-  
-
-  <main class="mt-5">
-    
-
-    <div class="container signin card">
-
-      <div id="wrongInput" class="alert alert-warning d-flex align-items-center justify-content-center alert-dismissible fade show" role="alert" style="visibility: hidden;">
-        <svg class="bi flex-shrink-0 me-2" width="24" height="80" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
-        <div>
-          Los datos ingresados no son validos, por favor, revise e intentelo denuevo
-        </div>
-        <button type="button" class="btn-close p-2" onclick="hideAlert()"></button>
-      </div>
-
-
-      <img class="card-img" src="./img/login.png" alt="Imagen de login">
-      
-      <h2 class="card-title">Inicio de Sesion </h2>
-
-      <div>
-
-        <div>
-          <label for="email" class="form-label">Email</label>
-          <input type="email" class="form-control" id="email">
-        </div>
-        <div>
-          <label for="password" class="form-label">Contraseña</label>
-          <input type="password" class="form-control" id="password">
-        </div>
-        <div>
-          <button class="btn btn-primary" type="button" id="ingBtn">Ingresar</button>
-        </div>
-
-      </div>
-
-      <div>
-
-        <div class="d-flex justify-content-center p-0">
-
-          <div id="g_id_onload"
-            data-client_id="278086413124-nh0322hh310mccol76ktrog82vc0iu3u.apps.googleusercontent.com"
-            data-context="signup" data-ux_mode="popup" data-callback="inicioSesionGoogle" data-nonce="">
+        <form
+          class="row mt-4 needs-validation"
+          novalidate
+        >
+          <div>
+            <h2 class="card-title">Inicio de Sesión</h2>
+            <hr class="my-3" />
+            <div class="">
+              <div>
+                <label for="email" class="form-label">Correo Electrónico</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  name="email"
+                  placeholder="usuario@dominio"
+                  required
+                />
+                <div class="invalid-feedback">
+                  Por favor ingrese un correo electrónico válido.
+                </div>
+              </div>
+              <div>
+                <label for="password" class="form-label">Contraseña</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  name="password"
+                  placeholder="Su contraseña"
+                  required
+                />
+                <div class="invalid-feedback">
+                  Por favor ingrese una contraseña válida.
+                </div>
+              </div>
+              <button class="btn btn-primary" type="submit">Registrarme</button>
+            </div>
           </div>
+        </form>
 
-          <div class="g_id_signin" data-type="standard" data-shape="pill" data-theme="filled_black"
-            data-text="$ {button.text}" data-size="large" data-logo_alignment="left" data-width="200">
+        <div>
+          <div class="d-flex justify-content-center p-0">
+            <div
+              id="g_id_onload"
+              data-client_id="278086413124-nh0322hh310mccol76ktrog82vc0iu3u.apps.googleusercontent.com"
+              data-context="signup"
+              data-ux_mode="popup"
+              data-callback="inicioSesionGoogle"
+              data-nonce=""
+            ></div>
+
+            <div
+              class="g_id_signin"
+              data-type="standard"
+              data-shape="pill"
+              data-theme="filled_black"
+              data-text="$ {button.text}"
+              data-size="large"
+              data-logo_alignment="left"
+              data-width="200"
+            ></div>
           </div>
-
         </div>
-
-
       </div>
+    </main>
 
-
-
-    </div>
-  </main>
-
-
-
-  <footer class="text-muted">
-    <div class="container">
-      <p class="float-end">
-        <a href="#">Volver arriba</a>
-      </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a> -
-        2022</p>
-      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
-    </div>
-  </footer>
-  <script src="https://unpkg.com/jwt-decode/build/jwt-decode.js"></script>
-  <script src="js/login.js"></script>
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
-</body>
-
+    <footer class="text-muted">
+      <div class="container">
+        <p class="float-end">
+          <a href="#">Volver arriba</a>
+        </p>
+        <p>
+          Este sitio forma parte de
+          <a href="https://jovenesaprogramar.edu.uy/" target="_blank"
+            >Jovenes a Programar</a
+          >
+          - 2022
+        </p>
+        <p>
+          Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la
+          letra del obligatorio.
+        </p>
+      </div>
+    </footer>
+    <script src="https://unpkg.com/jwt-decode/build/jwt-decode.js"></script>
+    <script src="js/login.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+  </body>
 </html>
