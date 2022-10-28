@@ -54,7 +54,6 @@ globalThis.inicioConGoogle = (response) => {
     id: responsePayload.sub,
     fullName: responsePayload.name,
     givenName: responsePayload.given_name,
-    familyName: responsePayload.familyName,
     imageUrl: responsePayload.picture,
     email: responsePayload.email,
   };
