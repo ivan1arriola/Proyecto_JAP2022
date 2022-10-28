@@ -10,7 +10,7 @@ let dolarValue;
 let currentlyCart = getCart();
 
 // El carrito de compras ha sido inicializado?
-const initialized = localStorage.getItem("initialized") || false;
+const initialized = Boolean(localStorage.getItem("initialized"))
 
 document.addEventListener("DOMContentLoaded", () => {
   getJSONData(CART_URL).then(function (cart) {

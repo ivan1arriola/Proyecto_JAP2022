@@ -14,6 +14,26 @@ const sortBySoldCountBtn = document.getElementById("sortBySoldCountBtn");
 const cleanRangeFilterBtn = document.getElementById("clearRangeFilter");
 const rangeFilterCountBtn = document.getElementById("rangeFilterCount");
 
+document.addEventListener("DOMContentLoaded", function (e) {
+    getJSONData(CATEGORY_URL).then(function (resultObj) {
+        if (resultObj.status === "ok") {
+            catName = resultObj.data.catName
+            productsArray = resultObj.data.products
+            showCatList()
+        }
+
+        document.getElementsByClassName("lead")[0].innerHTML = ` <p> Verás aquí todas los productos de la categoría <b>${catName}</b> </p>`;
+
+
+        sortByCostAscBtn.addEventListener("click", sortByCostAsc);
+        sortByCostDescBtn.addEventListener("click", sortByCostDesc);
+        sortBySoldCountBtn.addEventListener("click", sortBySoldCount);
+        cleanRangeFilterBtn.addEventListener("click", cleanRangeFilter);
+        rangeFilterCountBtn.addEventListener("click", rangeFilterCount);
+    });
+
+});
+
 function showCatList() {
 
     let htmlContentToAppend = "";
@@ -115,27 +135,6 @@ const rangeFilterCount = () => {
 
 
 
-//Función que se ejecuta una vez que se haya lanzado el evento de
-//que el documento se encuentra cargado, es decir, se encuentran todos los
-//elementos HTML presentes.
-document.addEventListener("DOMContentLoaded", function (e) {
-    getJSONData(CATEGORY_URL).then(function (resultObj) {
-        if (resultObj.status === "ok") {
-            catName = resultObj.data.catName
-            productsArray = resultObj.data.products
-            showCatList()
-        }
-
-        document.getElementsByClassName("lead")[0].innerHTML = ` <p> Verás aquí todas los productos de la categoria <b>${catName}</b> </p>`;
 
 
-        sortByCostAscBtn.addEventListener("click", sortByCostAsc);
-        sortByCostDescBtn.addEventListener("click", sortByCostDesc);
-        sortBySoldCountBtn.addEventListener("click", sortBySoldCount);
-
-        cleanRangeFilterBtn.addEventListener("click", cleanRangeFilter);
-        rangeFilterCountBtn.addEventListener("click", rangeFilterCount);
-    });
-
-});
 
