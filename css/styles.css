@@ -163,7 +163,8 @@ footer p {
   padding: 15px;
   margin: auto;
 }
-.signin h2, .signin p{
+.signin h2,
+.signin p {
   text-align: center;
 }
 
@@ -171,8 +172,6 @@ footer p {
   text-align: center;
   padding: 5px;
 }
-
-
 
 #spinner-wrapper {
   position: fixed;
@@ -197,13 +196,14 @@ a.custom-card:hover {
 
 /* login */
 
-.signin{
+.signin {
   background-color: #f8f9fa;
 }
 
 /* product-info */
 
-.product-info, .cart{
+.product-info,
+.cart {
   width: 100%;
   max-width: 90%;
   padding: 15px;
@@ -211,26 +211,29 @@ a.custom-card:hover {
   display: block;
 }
 
-.comment div{
+.comment div {
   margin-bottom: 15px;
   margin-top: 15px;
 }
 
-.comment{
+.comment {
   width: 100%;
   margin: auto;
 }
 
-.product-info h1 , .cart h1 {
+.product-info h1,
+.cart h1 {
   text-align: center;
 }
 
-.product-info h2, .cart h2 {
+.product-info h2,
+.cart h2 {
   margin-bottom: 15px;
   text-align: center;
 }
 
-.product-info h3, .cart h3 {
+.product-info h3,
+.cart h3 {
   text-align: center;
 }
 
@@ -238,25 +241,25 @@ a.custom-card:hover {
   color: rgb(255, 189, 6);
 }
 
-h5 .success{
+h5 .success {
   color: green;
 }
 
-h5 .danger{
+h5 .danger {
   color: red;
 }
 
-h5 .warning{
+h5 .warning {
   color: rgb(185, 144, 30);
 }
 
-.product-info hr , 
+.product-info hr,
 .cart hr {
   margin-bottom: 15px;
   margin-top: 15px;
 }
 
-.carousel-images{
+.carousel-images {
   max-width: 30rem;
 }
 
@@ -271,15 +274,40 @@ h5 .warning{
 
 /* Carrito */
 
-.cart-product input{
+.cart {
+  width: calc(500vh - 210px);
+}
+
+.cart-product input {
   text-align: center;
 }
 
-.cart-product{
+.cart-product {
   margin-bottom: 15px;
 }
 
-.cart-product img{
-  max-width: 90%;
-  cursor:pointer;
+.cart-product img {
+  max-width: min(60vh, 60vw);
+  cursor: pointer;
+}
+
+.currency {
+  font-size: 1.5rem;
+}
+
+.decimals {
+  font-size: 0.8rem;
+}
+
+/* Ocultar flechas de input */
+/* Chrome, Safari, Edge, Opera */
+.cart input::-webkit-outer-spin-button,
+.cart input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.cart input[type=number] {
+  -moz-appearance: textfield;
 }

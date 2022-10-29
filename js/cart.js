@@ -1,4 +1,3 @@
-
 /** La función "setProdID" se encarga de guardar el ID del producto en el localStorage
 para luego ser utilizado en la pagina "product-info.html" */
 /** La función "addToCart" se encuentra en el archivo "init.js" */
@@ -6,20 +5,93 @@ para luego ser utilizado en la pagina "product-info.html" */
 
 const CART_URL = CART_INFO_URL + userID + EXT_TYPE;
 
-let dolarValue;
-let currentlyCart = getCart();
+let dolarValue = 40;
+let currentCart = getCart();
 
 // El carrito de compras ha sido inicializado?
-const initialized = Boolean(localStorage.getItem("initialized"))
+const initialized = Boolean(localStorage.getItem("initialized"));
+
+// Mostrar carrito
+const showCart = () => {
+  let cartHTML = ``;
+  currentCart.articles.forEach((product) => {
+    const { id, name, count, unitCost, currency, image } = product;
+    cartHTML += `
+            <div class="list-group-item list-group-item-action cart-product">
+                <div class="row text-center ">
+                    <div class="col-sm">
+                        <img src="${image}" alt="${name}" class="img-thumbnail mb-4 mb-sm-0" onclick="setProdID(${id})">
+                    </div>
+                    <div class="col">
+                        <h4 class="mb-1 fw-bold">${name}</h4>
+                        <p class="mb-1">Costo por unidad : ${costToHTML(
+                          currency,
+                          unitCost
+                        )}</p> 
+                        <div class="input-group mb-3">
+                            <button class="btn btn-outline-secondary" type="button" onclick="countBtn(false, ${id}, ${unitCost}, '${currency}', true)">-</button>
+                            <input type="number" class="form-control text-center" id="count${id}" value="${count}" min="1" oninput="this.value = parseInt(this.value);" onchange="subtotal('${currency}', ${id}, ${unitCost})">
+                            <button class="btn btn-outline-secondary" type="button" onclick="countBtn(true, ${id}, ${unitCost}, '${currency}', true)">+</button>
+                            <button class="btn btn-outline-danger" type="button" onclick="deleteItem(${id})">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <h4 class="mb-1 fw-bold">Subtotal</h4>
+                        <div id="${"subtotal" + id}">
+                            ${costToHTML(currency, unitCost * count, true)}
+                        </div>
+                    </div>
+                    </div>
+                  </div>
+              </div>
+    `;
+  });
+  document.getElementById("list").innerHTML = cartHTML;
+};
+
+// Validación de formulario
+var forms = document.querySelectorAll(".needs-validation");
+
+Array.prototype.slice.call(forms).forEach(function (form) {
+  form.addEventListener(
+    "submit",
+    function (event) {
+      if (!form.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+
+      form.classList.add("was-validated");
+    },
+    false
+  );
+});
+
+// Pasar precio a html
+const costToHTML = (currency, cost, bold=false) => {
+  let costString = parseFloat(cost.toFixed(2)).toLocaleString("es-UY");
+  let costArray = costString.split(",");
+  let costHTML = `
+  <div class="${bold? "fw-bold": ""}">
+    <span>${currency + " $ "}</span><span class="currency">${
+    costArray[0]
+  }</span><span class="dot">.</span><span class="decimals">${
+    costArray[1] ? costArray[1] : "00"
+  }</span>
+  </div>`;
+  return costHTML;
+};
 
 document.addEventListener("DOMContentLoaded", () => {
   getJSONData(CART_URL).then(function (cart) {
     if (cart.status === "ok") {
-      if(!initialized) {
+      if (!initialized) {
         addToCart(cart.data.articles[0]);
         window.localStorage.setItem("initialized", true);
       }
-      currentlyCart = getCart();
+      currentCart = getCart();
       showCart();
     }
   });
@@ -32,17 +104,16 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-
 const deleteItem = (itemID) => {
-  let itemIndex = currentlyCart.articles.findIndex((item) => item.id == itemID);
+  let itemIndex = currentCart.articles.findIndex((item) => item.id == itemID);
   if (itemIndex > -1) {
     // Elimina el elemento del array
-    currentlyCart.articles.splice(itemIndex, 1);
+    currentCart.articles.splice(itemIndex, 1);
   } else {
     console.log("No se encontró el elemento");
   }
-  // Guarda el array "currentlyCart" en el localStorage
-  localStorage.setItem("cart", JSON.stringify(currentlyCart));
+  // Guarda el array "currentCart" en el localStorage
+  localStorage.setItem("cart", JSON.stringify(currentCart));
   showCart();
   subtotalAll();
 };
@@ -53,16 +124,16 @@ const getShippingCost = (cost) => {
   );
 };
 
-const subtotal = (id, unitCost) => {
+const subtotal = (currency, id, unitCost, bool = false) => {
   let amount = document.getElementById("count" + id).value;
   if (amount < 0) {
     amount = 0;
     document.getElementById("count" + id).value = 0;
   }
   const subtotal = document.getElementById("subtotal" + id);
-  subtotal.innerHTML = amount * unitCost;
-  currentlyCart.articles.find((prod) => prod.id == id).count = amount;
-  localStorage.setItem("cart", JSON.stringify(currentlyCart));
+  subtotal.innerHTML = costToHTML(currency, amount * unitCost, bool);
+  currentCart.articles.find((prod) => prod.id == id).count = amount;
+  localStorage.setItem("cart", JSON.stringify(currentCart));
   subtotalAll();
 };
 
@@ -70,7 +141,7 @@ const subtotalAll = () => {
   let dolarCost = 0;
   let pesoCost = 0;
 
-  currentlyCart.articles.forEach(({ count, unitCost, currency }) => {
+  currentCart.articles.forEach(({ count, unitCost, currency }) => {
     if (currency == "UYU") {
       pesoCost += count * unitCost;
     } else {
@@ -83,37 +154,22 @@ const subtotalAll = () => {
   const total = cost + shippingCost;
 
   document.getElementById("dolar").innerHTML = dolarValue;
-  document.getElementById("subtotalAll").innerHTML = cost.toFixed(2);
-  document.getElementById("shippingCost").innerHTML = shippingCost.toFixed(2);
-  document.getElementById("total").innerHTML = total.toFixed(2);
+  document.getElementById("subtotalAll").innerHTML = costToHTML("USA", cost);
+  document.getElementById("shippingCost").innerHTML = costToHTML(
+    "USA",
+    shippingCost
+  );
+  document.getElementById("total").innerHTML = costToHTML("USA", total);
 };
 
-const showCart = () => {
-  let cartHTML = ``;
-  currentlyCart.articles.forEach((product) => {
-    const { id, name, count, unitCost, currency, image } = product;
-    cartHTML += `
-            <div class="list-group-item list-group-item-action  cart-product">
-                <div class="row ">
-                    <div class="col-sm mb-2">
-                        <img src="${image}" alt="${name}" class="img-thumbnail" onclick="setProdID(${id})">
-                    </div>
-                    <div class="col-sm text-center text-sm-start text-sm-start ">
-                        <div>
-                          <h4 class="mb-1 fw-bold">${name}</h4>
-                          <p class="mb-1 fs-5">${currency} ${unitCost}</p>
-                          <p>Cantidad:</p>
-                          <input id="count${id}" class="form-control" type="number" value="${count}" min="1" onchange="subtotal(${id}, ${unitCost})">
-                        </div>
-                    </div>
-                    <div class="col text-center">
-                        <p class="mb-1 fs-4 ">Subtotal: <br/> ${currency} <span class="fw-bold" id="subtotal${id}">${count * unitCost}</span></p>
-                        <button class="btn btn-danger" onclick="deleteItem(${id})">Eliminar</button>
-                    </div>
-                </div>
-            </div>
-    `;
-  });
-  document.getElementById("list").innerHTML = cartHTML;
-};
 
+
+const countBtn = (add, id, unitCost, currency, bool = false) => {
+  let amount = document.getElementById("count" + id).value;
+  add ? amount++ : amount--;
+  if (amount < 1) {
+    amount = 1;
+  }
+  document.getElementById("count" + id).value = amount;
+  subtotal(currency, id, unitCost, bool);
+};

@@ -1,138 +1,208 @@
 <!DOCTYPE html>
 <html lang="es">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>eMercado - Todo lo que busques está aquí</title>
 
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>eMercado - Todo lo que busques está aquí</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i"
+      rel="stylesheet"
+    />
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="./img/login.png" type="image/png" />
+  </head>
 
-  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-  <link href="css/font-awesome.min.css" rel="stylesheet">
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet">
-  <link rel="shortcut icon" href="./img/login.png" type="image/png">
-</head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
+      <div class="container">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav w-100 justify-content-between">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="categories.html">Categorías</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="sell.html">Vender</a>
+            </li>
 
-<body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
-    <div class="container">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav w-100 justify-content-between">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="categories.html">Categorías</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="sell.html">Vender</a>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="user" role="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
-            </a>
-            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="user">
-              <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
-              <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
-              <li><button class="dropdown-item" onclick="loginOut()">Cerrar sesión</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <main class="pb-5">
-
-    <div class="text-center p-4">
-      <h2>Productos</h2>
-      <p class="lead"></p>
-    </div>
-
-    <div class="container">
-
-
-
-
-      <div class="row">
-        <div class="col text-end">
-          <div class="btn-group btn-group-toggle mb-4" data-bs-toggle="buttons">
-
-            <input type="radio" class="btn-check" name="options" id="sortByCostAscBtn">
-            <label class="btn btn-light" for="sortByCostAscBtn"><i class="fas fa-sort-numeric-down"></i></label>
-
-            <input type="radio" class="btn-check" name="options" id="sortByCostDescBtn">
-            <label class="btn btn-light" for="sortByCostDescBtn"><i class="fas fa-sort-numeric-up-alt"></i></label>
-
-            <input type="radio" class="btn-check" name="options" id="sortBySoldCountBtn" checked>
-            <label class="btn btn-light" for="sortBySoldCountBtn"><i class="fas fa-sort-amount-down mr-1"></i></label>
-
-          </div>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="user"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+              </a>
+              <ul
+                class="dropdown-menu dropdown-menu-dark"
+                aria-labelledby="user"
+              >
+                <li>
+                  <a class="dropdown-item" href="cart.html">Mi carrito</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="my-profile.html">Mi perfil</a>
+                </li>
+                <li>
+                  <button class="dropdown-item" onclick="loginOut()">
+                    Cerrar sesión
+                  </button>
+                </li>
+              </ul>
+            </li>
+          </ul>
         </div>
-        <div class="row">
+      </div>
+    </nav>
 
-          <div class="col-lg-12 offset-lg-1 col-md-8 mb-1 container">
-            <div class="row justify-content-md-center">
-              <div class="col col-lg-0">
-                <p class="font-weight-normal my-1">Filtro</p>
-              </div>
-              <div class="col col-lg-4">
-                <input type="text" id="search" oninput="search()">
-              </div>
-              <div class="col">
-                <p class="font-weight-normal text-end my-2">Precio.</p>
-              </div>
-              <div class="col">
-                <input class="form-control" type="number" placeholder="min." id="rangeFilterCountMin">
-              </div>
-              <div class="col">
-                <input class="form-control" type="number" placeholder="máx." id="rangeFilterCountMax">
-              </div>
-              <div class="col-3 p-0">
-                <div class="btn-group" role="group">
-                  <button class="btn btn-light btn-block" id="rangeFilterCount">Filtrar</button>
-                  <button class="btn btn-link btn-sm" id="clearRangeFilter">Limpiar</button>
+    <main class="pb-5">
+      <div class="text-center p-4">
+        <h2>Productos</h2>
+        <p class="lead"></p>
+      </div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col text-end">
+            <div
+              class="btn-group btn-group-toggle mb-4"
+              data-bs-toggle="buttons"
+            >
+              <input
+                type="radio"
+                class="btn-check"
+                name="options"
+                id="sortByCostAscBtn"
+              />
+              <label class="btn btn-light" for="sortByCostAscBtn"
+                ><i class="fas fa-sort-numeric-down"></i
+              ></label>
+
+              <input
+                type="radio"
+                class="btn-check"
+                name="options"
+                id="sortByCostDescBtn"
+              />
+              <label class="btn btn-light" for="sortByCostDescBtn"
+                ><i class="fas fa-sort-numeric-up-alt"></i
+              ></label>
+
+              <input
+                type="radio"
+                class="btn-check"
+                name="options"
+                id="sortBySoldCountBtn"
+                checked
+              />
+              <label class="btn btn-light" for="sortBySoldCountBtn"
+                ><i class="fas fa-sort-amount-down mr-1"></i
+              ></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 offset-lg-1 col-md-8 mb-1 container">
+              <div class="row justify-content-md-center">
+                <div class="col col-lg-0">
+                  <p class="font-weight-normal my-1">Filtro</p>
+                </div>
+                <div class="col col-lg-4">
+                  <input type="text" id="search" oninput="search()" />
+                </div>
+                <div class="col">
+                  <p class="font-weight-normal text-end my-2">Precio.</p>
+                </div>
+                <div class="col">
+                  <input
+                    class="form-control"
+                    type="number"
+                    placeholder="min."
+                    id="rangeFilterCountMin"
+                  />
+                </div>
+                <div class="col">
+                  <input
+                    class="form-control"
+                    type="number"
+                    placeholder="máx."
+                    id="rangeFilterCountMax"
+                  />
+                </div>
+                <div class="col-3 p-0">
+                  <div class="btn-group" role="group">
+                    <button
+                      class="btn btn-light btn-block"
+                      id="rangeFilterCount"
+                    >
+                      Filtrar
+                    </button>
+                    <button class="btn btn-link btn-sm" id="clearRangeFilter">
+                      Limpiar
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-
-      <div class="row">
-        <div class="list-group" id="product-list-container">
-          <!--- aqui va los elementos de product --->
+        <div class="row">
+          <div class="list-group" id="product-list-container">
+            <!--- aqui va los elementos de product --->
+          </div>
         </div>
       </div>
-    </div>
-    </div>
-  </main>
+    </main>
 
-  <footer class="text-muted">
-    <div class="container">
-      <p class="float-end">
-        <a href="#">Volver arriba</a>
-      </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a> -
-        2022</p>
-      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+    <footer class="text-muted">
+      <div class="container">
+        <p class="float-end">
+          <a href="#">Volver arriba</a>
+        </p>
+        <p>
+          Este sitio forma parte de
+          <a href="https://jovenesaprogramar.edu.uy/" target="_blank"
+            >Jovenes a Programar</a
+          >
+          - 2022
+        </p>
+        <p>
+          Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la
+          letra del obligatorio.
+        </p>
+      </div>
+    </footer>
+    <div id="spinner-wrapper">
+      <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
     </div>
-  </footer>
-  <div id="spinner-wrapper">
-    <div class="lds-ring">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  </div>
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/init.js"></script>
-  <script src="js/products.js"></script>
-</body>
-
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/products.js"></script>
+  </body>
 </html>
