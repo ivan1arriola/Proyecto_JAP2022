@@ -89,6 +89,26 @@
               <h2>Artículos a comprar</h2>
             </div>
 
+            <div class="modal fade" id="deleteModal"  tabindex="-1" aria-labelledby="deleteModal" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalTitle">Eliminar artículo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body" id="deleteModalBody">
+                    ¿Está seguro que desea eliminar este artículo?
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" id="deleteModalBtn" class="btn btn-danger" data-bs-dismiss="modal">Eliminar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        
+
+
             <div id="list">
               <!-- Aquí se insertan los productos -->
             </div>
@@ -173,7 +193,7 @@
                   </div>
                 </div>
                 <div class="form-row row">
-                  <div class="col-4">
+                  <div class="col-6">
                     <label for="inputStreet">Esquina</label>
                     <input
                       type="text"

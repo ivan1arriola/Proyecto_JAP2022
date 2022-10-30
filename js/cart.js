@@ -32,7 +32,7 @@ const showCart = () => {
                             <button class="btn btn-outline-secondary" type="button" onclick="countBtn(false, ${id}, ${unitCost}, '${currency}', true)">-</button>
                             <input type="number" class="form-control text-center" id="count${id}" value="${count}" min="1" oninput="this.value = parseInt(this.value);" onchange="subtotal('${currency}', ${id}, ${unitCost})">
                             <button class="btn btn-outline-secondary" type="button" onclick="countBtn(true, ${id}, ${unitCost}, '${currency}', true)">+</button>
-                            <button class="btn btn-outline-danger" type="button" onclick="deleteItem(${id})">
+                            <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" type="button" onclick="showDeleteModal(${id})">
                                 <i class="fas fa-trash-alt"></i>
                             </button>
                         </div>
@@ -105,19 +105,26 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-const deleteItem = (itemID) => {
+const showDeleteModal = (itemID) => {
   let itemIndex = currentCart.articles.findIndex((item) => item.id == itemID);
-  if (itemIndex > -1) {
-    // Elimina el elemento del array
-    currentCart.articles.splice(itemIndex, 1);
-  } else {
-    console.log("No se encontró el elemento");
-  }
-  // Guarda el array "currentCart" en el localStorage
-  localStorage.setItem("cart", JSON.stringify(currentCart));
-  showCart();
-  subtotalAll();
+  let item = currentCart.articles[itemIndex];
+  document.getElementById("deleteModalBody").innerHTML = `
+    <p>¿Está seguro que desea eliminar <b> ${item.name} </b>  del carrito?</p>
+    <p>Esta acción no se puede deshacer.</p>
+  `;
+  document.getElementById("deleteModalBtn").onclick = () => {
+    deleteFromCart(itemID);
+    showCart();
+    subtotalAll();
+  };
 };
+
+const deleteFromCart = (itemID) => {
+  let itemIndex = currentCart.articles.findIndex((item) => item.id == itemID);
+  currentCart.articles.splice(itemIndex, 1);
+  localStorage.setItem("cart", JSON.stringify(currentCart));
+};
+
 
 const subtotal = (currency, id, unitCost, bool = false) => {
   let amount = document.getElementById("count" + id).value;
