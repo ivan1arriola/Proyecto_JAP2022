@@ -70,11 +70,11 @@ Array.prototype.slice.call(forms).forEach(function (form) {
 });
 
 // Pasar precio a html
-const costToHTML = (currency, cost, bold=false) => {
+const costToHTML = (currency, cost, bold = false) => {
   let costString = parseFloat(cost.toFixed(2)).toLocaleString("es-UY");
   let costArray = costString.split(",");
   let costHTML = `
-  <div class="${bold? "fw-bold": ""}">
+  <div class="${bold ? "fw-bold" : ""}">
     <span>${currency + " $ "}</span><span class="currency">${
     costArray[0]
   }</span><span class="dot">.</span><span class="decimals">${
@@ -93,6 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       currentCart = getCart();
       showCart();
+      seleccionarPago();
     }
   });
 
@@ -116,12 +117,6 @@ const deleteItem = (itemID) => {
   localStorage.setItem("cart", JSON.stringify(currentCart));
   showCart();
   subtotalAll();
-};
-
-const getShippingCost = (cost) => {
-  return (
-    cost * document.querySelector('input[name="shippingOption"]:checked').value
-  );
 };
 
 const subtotal = (currency, id, unitCost, bool = false) => {
@@ -149,20 +144,23 @@ const subtotalAll = () => {
     }
   });
 
-  const cost = pesoCost / dolarValue + dolarCost;
-  const shippingCost = getShippingCost(cost);
-  const total = cost + shippingCost;
+  const costSubtotal = pesoCost / dolarValue + dolarCost;
+  const shippingCost =
+    costSubtotal *
+    document.querySelector('input[name="shippingOption"]:checked').value;
+  const total = costSubtotal + shippingCost;
 
   document.getElementById("dolar").innerHTML = dolarValue;
-  document.getElementById("subtotalAll").innerHTML = costToHTML("USA", cost);
+  document.getElementById("subtotalAll").innerHTML = costToHTML(
+    "USA",
+    costSubtotal
+  );
   document.getElementById("shippingCost").innerHTML = costToHTML(
     "USA",
     shippingCost
   );
   document.getElementById("total").innerHTML = costToHTML("USA", total);
 };
-
-
 
 const countBtn = (add, id, unitCost, currency, bool = false) => {
   let amount = document.getElementById("count" + id).value;
@@ -173,3 +171,26 @@ const countBtn = (add, id, unitCost, currency, bool = false) => {
   document.getElementById("count" + id).value = amount;
   subtotal(currency, id, unitCost, bool);
 };
+
+const seleccionarPago = (pago = "none") => {
+  const tarjeta = document.getElementById("tarjeta");
+  const transferencia = document.getElementById("transferencia");
+  if (pago == "Credito") {
+    enableForm(tarjeta, true);
+    enableForm(transferencia, false);
+  } else if (pago == "Transferencia") {
+    enableForm(tarjeta, false);
+    enableForm(transferencia, true);
+  } else {
+    enableForm(tarjeta, false);
+    enableForm(transferencia, false);
+  }
+};
+
+const enableForm = (form, bool) => {
+  form.querySelectorAll("input").forEach((input) => {
+    input.disabled = !bool;
+    input.required = bool;
+    input.opacity = bool ? 1 : 0.5;
+  });
+}

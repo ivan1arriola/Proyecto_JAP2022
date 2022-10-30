@@ -77,292 +77,315 @@
       </div>
     </nav>
     <main class="cart">
-      <form class="row g-3 needs-validation" novalidate>
-        <div>
-          <h1>Carrito de Compras</h1>
-        </div>
-        <hr />
-
-        <div class="container">
+      <div class="container">
+        <form class="row g-3 needs-validation" novalidate>
           <div>
-            <h2>Artículos a comprar</h2>
+            <h1>Carrito de Compras</h1>
           </div>
-
-          <div id="list">
-            <!-- Aquí se insertan los productos -->
-          </div>
-
           <hr />
 
-          <div id="shipping">
+          <div class="container">
             <div>
-              <h2>Tipo de envío</h2>
+              <h2>Artículos a comprar</h2>
             </div>
 
-            <div class="">
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="shippingOption"
-                  id="premium"
-                  onclick="subtotalAll()"
-                  value="0.15"
-                  required
-                  checked
-                />
-                <label class="form-check-label" for="premium">
-                  Premium 3 a 5 días (15%)
-                </label>
-              </div>
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="shippingOption"
-                  id="express"
-                  onclick="subtotalAll()"
-                  value="0.07"
-                />
-                <label class="form-check-label" for="express">
-                  Express 5 a 8 días (7%)
-                </label>
-              </div>
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="shippingOption"
-                  id="standard"
-                  onclick="subtotalAll()"
-                  value="0.05"
-                />
-                <label class="form-check-label" for="standard">
-                  Standard 12 a 15 días (5%)
-                </label>
-              </div>
+            <div id="list">
+              <!-- Aquí se insertan los productos -->
             </div>
 
             <hr />
 
-            <div>
-              <h2>Dirección de envío</h2>
-            </div>
+            <div id="shipping">
+              <div>
+                <h2>Tipo de envío</h2>
+              </div>
 
-            <div>
-              <div class="form-row row">
-                <div class="col-8">
-                  <label for="inputAddress">Calle</label>
-                  <input type="text" id="inputAddress" class="form-control" required 
-                  />
-                </div>
-                <div class="col-4">
-                  <label for="inputHouseNumber">Número</label>
+              <div class="">
+                <div class="form-check">
                   <input
-                    type="text"
-                    id="inputHouseNumber"
-                    oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');"
-                    class="form-control"
+                    class="form-check-input"
+                    type="radio"
+                    name="shippingOption"
+                    id="premium"
+                    onclick="subtotalAll()"
+                    value="0.15"
                     required
+                    checked
                   />
+                  <label class="form-check-label" for="premium">
+                    Premium 3 a 5 días (15%)
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="shippingOption"
+                    id="express"
+                    onclick="subtotalAll()"
+                    value="0.07"
+                  />
+                  <label class="form-check-label" for="express">
+                    Express 5 a 8 días (7%)
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="shippingOption"
+                    id="standard"
+                    onclick="subtotalAll()"
+                    value="0.05"
+                  />
+                  <label class="form-check-label" for="standard">
+                    Standard 12 a 15 días (5%)
+                  </label>
                 </div>
               </div>
-              <div class="form-row row">
-                <div class="col-4">
-                  <label for="inputStreet">Esquina</label>
-                  <input type="text" id="inputStreet" class="form-control"
-                   required/>
+
+              <hr />
+
+              <div>
+                <h2>Dirección de envío</h2>
+              </div>
+
+              <div>
+                <div class="form-row row">
+                  <div class="col-8">
+                    <label for="inputAddress">Calle</label>
+                    <input
+                      type="text"
+                      id="inputAddress"
+                      class="form-control"
+                      required
+                    />
+                  </div>
+                  <div class="col-4">
+                    <label for="inputHouseNumber">Número</label>
+                    <input
+                      type="text"
+                      id="inputHouseNumber"
+                      oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');"
+                      class="form-control"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="form-row row">
+                  <div class="col-4">
+                    <label for="inputStreet">Esquina</label>
+                    <input
+                      type="text"
+                      id="inputStreet"
+                      class="form-control"
+                      required
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <hr />
+              <hr />
 
-            <div>
-              <h2>Costos</h2>
-            </div>
+              <div>
+                <h2>Costos</h2>
+              </div>
 
-            <div>
-              <div class="list-group costos">
-                <div class="list-group-item">
-                  <div class="row align-items-center justify-content-center">
-                    <div class="col">
-                      <h5 class="mb-1 fw-bold">Subtotal</h5>
-                      <p class="mb-1">
-                        Costo unitario del producto por cantidad
-                      </p>
+              <div>
+                <div class="list-group costos">
+                  <div class="list-group-item">
+                    <div class="row align-items-center justify-content-center">
+                      <div class="col">
+                        <h5 class="mb-1 fw-bold">Subtotal</h5>
+                        <p class="mb-1">
+                          Costo unitario del producto por cantidad
+                        </p>
+                      </div>
+                      <div class="col text-end">
+                        <h5 class="mb-1" id="subtotalAll">USA $ 0.00</h5>
+                      </div>
                     </div>
-                    <div class="col text-end">
-                      <h5 class="mb-1 " id="subtotalAll" >USA $ 0.00</h5>
+                  </div>
+
+                  <div class="list-group-item">
+                    <div class="row align-items-center justify-content-center">
+                      <div class="col">
+                        <h5 class="mb-1 fw-bold">Costo de Envío</h5>
+                        <p class="mb-1">Según el tipo de envío</p>
+                      </div>
+                      <div class="col text-end">
+                        <h5 class="mb-1" id="shippingCost">USA $ 0.00</h5>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="list-group-item">
+                    <div class="row align-items-center justify-content-center">
+                      <div class="col">
+                        <h5 class="mb-1 fw-bold">Total</h5>
+                      </div>
+                      <div class="col text-end">
+                        <h5 class="mb-1" id="total">USA $ 0.00</h5>
+                      </div>
                     </div>
                   </div>
                 </div>
 
-                <div class="list-group-item">
-                  <div class="row align-items-center justify-content-center">
-                    <div class="col">
-                      <h5 class="mb-1 fw-bold">Costo de Envío</h5>
-                      <p class="mb-1">Según el tipo de envío</p>
-                    </div>
-                    <div class="col text-end">
-                      <h5 class="mb-1" id="shippingCost">USA $ 0.00</h5>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="list-group-item">
-                  <div class="row align-items-center justify-content-center">
-                    <div class="col">
-                      <h5 class="mb-1 fw-bold">Total</h5>
-                    </div>
-                    <div class="col text-end">
-                      <h5 class="mb-1" id="total">USA $ 0.00</h5>
-                    </div>
-                  </div>
+                <div class="mb-2">
+                  <small class="text-muted">
+                    USA $1 = UYU $<span id="dolar"></span>
+                  </small>
                 </div>
               </div>
 
-              <div class="mb-2">
-                <small class="text-muted">
-                  USA $1 = UYU $<span id="dolar"></span>
-                </small>
+              <hr />
+
+              <div>
+                <h2>Forma de Pago</h2>
               </div>
-            </div>
 
-            <hr />
+              <div>
+                <p>
+                  <span id="formaDePagoSeleccionada">No se ha seleccionado</span>
+                  <a
+                    href=""
+                    data-bs-toggle="modal"
+                    data-bs-target="#formaDePagoModal"
+                  >
+                    Seleccionar
+                  </a>
+                </p>
 
-            <div>
-              <h2>Forma de Pago</h2>
-            </div>
-
-            <div>
-              <p>
-                <span id="formaDePago">No se ha seleccionado</span>
-                <a
-                  href=""
-                  data-bs-toggle="modal"
-                  data-bs-target="#formaDePagoModal"
+                <div
+                  class="modal fade"
+                  id="formaDePagoModal"
+                  tabindex="-1"
+                  aria-labelledby="modalLabel"
+                  aria-hidden="true"
                 >
-                  Seleccionar
-                </a>
-              </p>
-
-              <div
-                class="modal fade"
-                id="formaDePagoModal"
-                tabindex="-1"
-                aria-labelledby="modalLabel"
-                aria-hidden="true"
-              >
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title fw-bold" id="modalLabel">
-                        Forma de Pago
-                      </h5>
-                      <button
-                        type="button"
-                        class="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"
-                      ></button>
-                    </div>
-                    <div class="modal-body">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="radio"
-                          name="formaDePago"
-                          id="credito"
-                        />
-                        <label class="form-check-label" for="credito">
-                          Tarjeta de Crédito
-                        </label>
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title fw-bold" id="modalLabel">
+                          Forma de Pago
+                        </h5>
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        ></button>
                       </div>
-                      <hr />
+                      <div class="modal-body">
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="formaDePago"
+                            value="Credito"
+                            onclick="seleccionarPago(this.value)"
+                            required
+                          />
+                          <label class="form-check-label" for="credito">
+                            Tarjeta de Crédito
+                          </label>
+                        </div>
+                        <hr />
 
-                      <div id="creditoOpciones" class="input-group mb-3">
-                        <div class="mx-sm-1">
-                          <label for="inputCardNumber">Número de Tarjeta</label>
-                          <input
-                            type="text"
-                            id="inputCardNumber"
-                            class="form-control"
-                          />
+                        <div id="tarjeta" class="input-group mb-3">
+                          <div class="mx-sm-1">
+                            <label for="inputCardNumber"
+                              >Número de Tarjeta</label
+                            >
+                            <input
+                              type="text"
+                              id="inputCardNumber"
+                              class="form-control"
+                              required
+                            />
+                          </div>
+                          <div class="mx-sm-1">
+                            <label for="inputCardCode"
+                              >Código de Seguridad</label
+                            >
+                            <input
+                              type="text"
+                              id="inputCardCode"
+                              class="form-control"
+                              required
+                            />
+                          </div>
+                          <div class="mx-sm-1">
+                            <label for="inputCardDate"
+                              >Vencimiento (MM/AA)</label
+                            >
+                            <input
+                              type="text"
+                              id="inputCardDate"
+                              class="form-control"
+                              required
+                            />
+                          </div>
                         </div>
-                        <div class="mx-sm-1">
-                          <label for="inputCardCode">Código de Seguridad</label>
+
+                        <div class="form-check">
                           <input
-                            type="text"
-                            id="inputCardCode"
-                            class="form-control"
+                            class="form-check-input"
+                            type="radio"
+                            name="formaDePago"
+                            value="Transferencia"
+                            onclick="seleccionarPago(this.value)"
                           />
+                          <label class="form-check-label" for="transferencia">
+                            Transferencia Bancaria
+                          </label>
                         </div>
-                        <div class="mx-sm-1">
-                          <label for="inputCardDate">Vencimiento (MM/AA)</label>
-                          <input
-                            type="text"
-                            id="inputCardDate"
-                            class="form-control"
-                          />
+                        <hr />
+
+                        <div id="transferencia">
+                          <label for="numeroCuenta" class="form-label"
+                            >Numero de Cuenta</label
+                          >
+                          <div class="input-group mb-3 mx-sm-1">
+                            <input
+                              type="number"
+                              class="form-control"
+                              id="numeroCuenta"
+                              required
+                            />
+                          </div>
                         </div>
                       </div>
-
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="radio"
-                          name="formaDePago"
-                          id="transferencia"
-                        />
-                        <label class="form-check-label" for="transferencia">
-                          Transferencia Bancaria
-                        </label>
-                      </div>
-                      <hr />
-
-                      <div id="tranferenciaOpciones">
-                        <label for="numeroCuenta" class="form-label"
-                          >Numero de Cuenta</label
+                      <div class="modal-footer">
+                        <button
+                          type="button"
+                          class="btn btn-primary"
+                          data-bs-dismiss="modal"
                         >
-                        <div class="input-group mb-3 mx-sm-1">
-                          <input
-                            type="number"
-                            class="form-control"
-                            id="numeroCuenta"
-                          />
-                        </div>
+                          Cerrar
+                        </button>
                       </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button
-                        type="button"
-                        class="btn btn-primary"
-                        data-bs-dismiss="modal"
-                      >
-                        Cerrar
-                      </button>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <hr />
+              <hr />
 
-            <div class="d-grid gap-2 mt-5">
-              <button
-                type="submit"
-                name=""
-                id="submitPurchase "
-                class="btn btn-primary"
-              >
-                Finalizar Compra
-              </button>
+              <div class="d-grid gap-2 mt-5">
+                <button
+                  type="submit"
+                  name=""
+                  id="submitPurchase "
+                  class="btn btn-primary"
+                >
+                  Finalizar Compra
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </main>
     <footer class="text-muted">
       <div class="container">
