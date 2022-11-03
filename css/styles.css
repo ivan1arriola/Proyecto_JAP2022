@@ -199,6 +199,9 @@ a.custom-card:hover {
 .signin {
   background-color: #f8f9fa;
 }
+.form > div {
+  margin-bottom: 7px;
+}
 
 /* product-info */
 
