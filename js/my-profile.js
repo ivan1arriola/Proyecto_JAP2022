@@ -5,7 +5,29 @@ document.addEventListener("DOMContentLoaded", function (e) {
   showProfile(profile);
 });
 
-
+const validateEmail = () => {
+  const emailInput = document.getElementById("inputEmail");
+  const profiles = getProfiles();
+  const isEmailRegistered = profiles.some((profile) => profile.email === emailInput.value);
+  const invalidEmail = document.getElementById("invalidEmail");
+  if( emailInput.value === profile.email) {
+    emailInput.setCustomValidity("");
+    console.log("El email es igual al actual");
+    invalidEmail.innerHTML = "Formato de e-mail incorrecto";
+    return true; 
+  }
+  if (isEmailRegistered) {
+    emailInput.setCustomValidity('Este email ya esta registrado');
+    console.log('Este email ya esta registrado');
+    invalidEmail.innerHTML = "Este email ya esta registrado";
+    return false;
+  } else {
+    emailInput.setCustomValidity('');
+    console.log('Este email no esta registrado');
+    invalidEmail.innerHTML = "Formato de e-mail incorrecto";
+    return true;
+  }
+};
 
 
 (function () {
@@ -18,6 +40,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
   Array.prototype.slice.call(forms)
     .forEach(function (form) {
       form.addEventListener('submit', function (event) {
+        validateEmail();
+        document.getElementById("invalidEmail").addEventListener("input", () => {console.log("input")});
         if (!form.checkValidity()) {
           event.preventDefault()
           event.stopPropagation()
@@ -29,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
             lastName2: document.getElementById('inputLastName2').value,
             email: document.getElementById('inputEmail').value,
             telephone: document.getElementById('inputTelephone').value,
-            picture: "document.getElementById('inputPicture').value",
+            picture: "",
           }
           updateProfile(profile)
           showProfile(profile)
