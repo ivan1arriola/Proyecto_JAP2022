@@ -12,8 +12,9 @@ const DOLAR_API = "https://cotizaciones-brou.herokuapp.com/api/currency/latest";
 
 
 /* Funciones para manejo de sesión */
-const USER = localStorage.getItem("user");
-const LOGIN = "login.html";
+const USER = localStorage.getItem("user")
+const currenlyPath = window.location.pathname;
+const loginPath = "/login.html";
 
 const loginOut = () => {
   localStorage.removeItem("user");
@@ -26,8 +27,11 @@ const setProdID = (id) => {
 };
 
 document.addEventListener("DOMContentLoaded", function () {
-  if (!Boolean(USER)) {
-    window.location = LOGIN;
+  if(currenlyPath === loginPath) {
+    return false;
+  }
+  if (!Boolean(USER) ) {
+    window.location = loginPath;
   } else {
     document.getElementById("user").innerHTML = USER;
   }
@@ -69,6 +73,68 @@ const addToCart = (newArticle) => {
 };
 
 //-------------------------------------------------------------------
+// Gestion de perfiles de usuario
+/* Este modulo tiene la responsabilidad de manejar los perfiles de usuario */
+
+const isProfileSignedUp = (email) => {
+  const profiles = getProfiles();
+  const profile = profiles.find((profile) => profile.email == email);
+  return Boolean(profile);
+}
+
+const createProfile = (email, name="", lastName="", picture="") => {
+  const profiles = getProfiles();
+  if( profiles.find((profile) => profile.email == email) === -1) { return false } ;
+  const profile = {
+      name: name,
+      name2: "",
+      lastName: lastName,
+      lastName2: "",
+      email: email,
+      telephone: "",
+      picture: picture,
+  };
+  profiles.push(profile);
+  localStorage.setItem("profiles", JSON.stringify(profiles));
+  return profile;
+};
+
+const getProfiles = () => {
+  let profiles = localStorage.getItem("profiles");
+  if (!Boolean(profiles)) {
+      emptyProfiles = [];
+      localStorage.setItem("profiles", JSON.stringify(emptyProfiles));
+      return emptyProfiles;
+  } else {
+      profiles = JSON.parse(profiles);
+      return profiles;
+  }
+}
+
+
+
+const getProfile = (email) => {
+  const profiles = getProfiles();
+  const profile = profiles.find((profile) => profile.email === email);
+  return profile || "No se encontro el perfil";
+}
+
+/* Debe existir el perfil que se quiere actualizar */
+const updateProfile = (profile) => {
+  const profiles = getProfiles();
+  const index = profiles.findIndex((profileFromArray) => profileFromArray.email === profile.email);
+  if (index !== -1) profiles[index] = profile;
+  localStorage.setItem("profiles", JSON.stringify(profiles));
+}
+
+const deleteProfile = (email) => {
+  const profiles = getProfiles();
+  const index = profiles.findIndex((profile) => profile.email === email);
+  if (index !== -1) profiles.splice(index, 1);
+  localStorage.setItem("profiles", JSON.stringify(profiles));
+}
+
+console.log("profile.js loaded");
 
 
 
@@ -104,3 +170,4 @@ let getJSONData = function (url) {
       return result;
     });
 };
+
