@@ -56,12 +56,13 @@ function decodeJwtResponse(token) {
   return JSON.parse(jsonPayload);
 }
 
+// puerto 5500 para correr el servidor local
 
 globalThis.inicioConGoogle = (response) => {
   const googleProfile = decodeJwtResponse(response.credential);
 
-  const name = googleProfile.name;
-  const lastName = googleProfile.given_name;
+  const name = googleProfile.given_name;
+  const lastName = googleProfile.family_name;
   const email = googleProfile.email;
   const picture = googleProfile.picture;
 

@@ -93,6 +93,7 @@ const showProfile = (profile) => {
   document.getElementById("lastName2").value = profile.lastName2;
   document.getElementById("email").value = profile.email;
   document.getElementById("telephone").value = profile.telephone;
+  document.getElementById("picture").style.backgroundImage = `url(${profile.picture})`;
 
   // en el modal
   document.getElementById("inputName").value = profile.name;
@@ -105,3 +106,13 @@ const showProfile = (profile) => {
 };
 
 console.log("my-profile.js loaded");
+
+const test_profile = {
+  name: "Juan",
+  name2: "Pablo",
+  lastName: "Perez",
+  lastName2: "Gomez",
+  email: "email@prueba.com",
+  telephone: "123456789",
+  picture: "https://picsum.photos/200",
+};
