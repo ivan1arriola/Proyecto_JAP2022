@@ -61,17 +61,16 @@ const addToCart = (newArticle) => {
     (article) => article.id == newArticle.id
   );
   if (articleIndex < 0) { 
-    // El artículo no está en el carrito
     cart.articles.push(newArticle);
   } else {
-    // El artículo ya está en el carrito
     cart.articles[articleIndex].count++;
   }
-  // Actualizo el carrito en el localStorage
   localStorage.setItem("cart", JSON.stringify(cart));
 };
 
 //-------------------------------------------------------------------
+
+
 
 let showSpinner = function () {
   document.getElementById("spinner-wrapper").style.display = "block";

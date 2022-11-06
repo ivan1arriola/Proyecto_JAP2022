@@ -1,149 +1,196 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <title>eMercado - Todo lo que busques está aquí</title>
-    <link
-      href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i"
-      rel="stylesheet"
-    />
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
-    <link href="css/styles.css" rel="stylesheet" />
-    <link rel="shortcut icon" href="./img/login.png" type="image/png" />
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>eMercado - Todo lo que busques está aquí</title>
+  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <link href="css/styles.css" rel="stylesheet" />
+  <link rel="shortcut icon" href="./img/login.png" type="image/png" />
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
       }
+    }
+  </style>
+</head>
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
-  </head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav w-100 justify-content-between">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="categories.html">Categorías</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="sell.html">Vender</a>
+          </li>
 
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
-      <div class="container">
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav w-100 justify-content-between">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html">Inicio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="categories.html">Categorías</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="sell.html">Vender</a>
-            </li>
-
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                id="user"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-              </a>
-              <ul
-                class="dropdown-menu dropdown-menu-dark"
-                aria-labelledby="user"
-              >
-                <li>
-                  <a class="dropdown-item" href="cart.html">Mi carrito</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="my-profile.html">Mi perfil</a>
-                </li>
-                <li>
-                  <button class="dropdown-item" onclick="loginOut()">
-                    Cerrar sesión
-                  </button>
-                </li>
-              </ul>
-            </li>
-          </ul>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="user" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="user">
+              <li>
+                <a class="dropdown-item" href="cart.html">Mi carrito</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="my-profile.html">Mi perfil</a>
+              </li>
+              <li>
+                <button class="dropdown-item" onclick="loginOut()">
+                  Cerrar sesión
+                </button>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="text-center">Mi perfil</h1>
         </div>
       </div>
-    </nav>
-    <main>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <h1 class="text-center">Mi perfil</h1>
-          </div>
-        </div>
 
-        <div class="row">
-          <div class="col-md-12">
-            <div class="card">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-md-4" id="imageUrl">
-                    <img
-                      src="img/img_perfil.png"
-                      class="img-fluid"
-                      alt="Responsive image"
-                    />
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-4" id="imageUrl">
+                  <img src="img/img_perfil.png" class="img-fluid" alt="Responsive image" />
+                </div>
+                <div class="col-md-8" id="profile">
+                  <h3 id="name">Nombre</h3>
+                  <p id="name2">Segundo Nombre</p>
+                  <p id="lastName">Apellido</p>
+                  <p id="lasName2">Segundo Apellido</p>
+                  <p id="email">E-mail</p>
+                  <p id="telephone">Telefono de Contacto</p>
+                  <!-- Modal trigger button -->
+                  <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal"
+                    data-bs-target="#editProfile">
+                    Editar Perfil
+                  </button>
+
+                  <!-- Modal Body -->
+                  <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+                  <div class="modal fade" id="editProfile" tabindex="-1" data-bs-backdrop="static"
+                    data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-static" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="modalTitleId">Editar Perfil</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <form class="needs-validation" novalidate>
+
+
+                            <!--Aqui empieza el contenido del modal-->
+                            <div>
+                              <div class="mb-3">
+                                <label for="inputName" class="form-label">Nombre *</label>
+                                <input type="text" id="inputName" class="form-control" placeholder="Ingrese su nombre"
+                                  required>
+                              </div>
+                              <div class="mb-3">
+                                <label for="inputName2" class="form-label">Segundo Nombre</label>
+                                <input type="text" id="inputName2" class="form-control"
+                                  placeholder="Ingrese su segundo nombre">
+                              </div>
+                              <div class="mb-3">
+                                <label for="inputLastName" class="form-label">Apellido *</label>
+                                <input type="text" id="inputLastName" class="form-control"
+                                  placeholder="Ingrese su apellido" required>
+                              </div>
+                              <div class="mb-3">
+                                <label for="inputLastName2" class="form-label">Segundo Apellido</label>
+                                <input type="text" id="inputLastName2" class="form-control"
+                                  placeholder="Ingrese segundo apellido">
+                              </div>
+                              <div class="mb-3">
+                                <label for="inputEmail" class="form-label">E-mail *</label>
+                                <input type="email" id="inputEmail" class="form-control" placeholder="Ingrese su e-mail"
+                                  required>
+                              </div>
+                              <div class="mb-3">
+                                <label for="inputTelephone" class="form-label">Telefono de Contacto</label>
+                                <input type="tel" id="inputTelephone" class="form-control"
+                                  placeholder="Ingrese su telefono">
+                              </div>
+
+                              <small>Los campos con asterisco son <b>obligatorios</b></small>
+
+                            </div>
+
+                            <!--Aqui termina el contenido del modal-->
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Descartar</button>
+                              <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div class="col-md-8">
-                    <h3 id="fullName">nombre</h3>
-                    <p id="givenName">apellido</p>
-                    <p id="email">e-mail</p>
-                    <button class="btn btn-primary" onclick="editProfile()">
-                      Editar perfil
-                    </button>
-                  </div>
+
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </main>
-    <footer class="text-muted">
-      <div class="container">
-        <p class="float-end">
-          <a href="#">Volver arriba</a>
-        </p>
-        <p>
-          Este sitio forma parte de
-          <a href="https://jovenesaprogramar.edu.uy/" target="_blank"
-            >Jovenes a Programar</a
-          >
-          - 2022
-        </p>
-        <p>
-          Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la
-          letra del obligatorio.
-        </p>
-      </div>
-    </footer>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/init.js"></script>
-    <script src="js/my-profile.js"></script>
-  </body>
+    </div>
+  </main>
+  <footer class="text-muted">
+    <div class="container">
+      <p class="float-end">
+        <a href="#">Volver arriba</a>
+      </p>
+      <p>
+        Este sitio forma parte de
+        <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a>
+        - 2022
+      </p>
+      <p>
+        Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la
+        letra del obligatorio.
+      </p>
+    </div>
+  </footer>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/init.js"></script>
+  <script src="js/my-profile.js"></script>
+  <!-- Optional: Place to the bottom of scripts -->
+  <script>
+    const myModal = new bootstrap.Modal(document.getElementById('editProfile'), options)
+
+  </script>
+</body>
+
 </html>

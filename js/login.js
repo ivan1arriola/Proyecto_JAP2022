@@ -4,14 +4,11 @@ const ERROR =
 
 const ids = ["email", "password"];
 
-
-
 // Fetch all the forms we want to apply custom Bootstrap validation styles to
 var forms = document.querySelectorAll(".needs-validation");
 
 // Loop over them and prevent submission
 Array.prototype.slice.call(forms).forEach(function (form) {
-  console.log(form);
   form.addEventListener(
     "submit",
     function (event) {
@@ -19,6 +16,7 @@ Array.prototype.slice.call(forms).forEach(function (form) {
       event.stopPropagation();
       if (form.checkValidity()) {
         const user = document.getElementById("email").value;
+        createProfile(user);
         logIn(user);
       }
       form.classList.add("was-validated");
@@ -47,18 +45,18 @@ function decodeJwtResponse(token) {
   return JSON.parse(jsonPayload);
 }
 
+
 globalThis.inicioConGoogle = (response) => {
   const responsePayload = decodeJwtResponse(response.credential);
 
-  perfilInfo = {
-    id: responsePayload.sub,
-    fullName: responsePayload.name,
-    givenName: responsePayload.given_name,
-    imageUrl: responsePayload.picture,
-    email: responsePayload.email,
-  };
 
-  localStorage.setItem("perfilInfo", JSON.stringify(perfilInfo));
+  const name = responsePayload.name;
+  const lastName = responsePayload.given_name;
+  const email = responsePayload.email;
+  const picture = responsePayload.picture;
 
-  logIn(responsePayload.name);
+  createProfile(email, name, lastName, picture);
+  logIn(email);
+
 };
+
