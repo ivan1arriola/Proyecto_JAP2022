@@ -1,5 +1,5 @@
 # ProyectoJAP
-Proyecto de e-commerce de Jovenes a Programar (JaP) de Iván Arriola @ivan1arriola
+Proyecto de e-commerce de Jovenes a Programar (JaP) de [Iván Arriola](https://github.com/ivan1arriola)
 
 ## Gestion de perfiles
 Los perfiles de usuarios se almacenan en el almacenamiento local con la key "profiles", como un array de perfiles.
