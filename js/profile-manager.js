@@ -6,16 +6,17 @@ const isProfileSignedUp = (email) => {
     return Boolean(profile);
 }
 
-const createProfile = (email) => {
+const createProfile = (email, name="", lastName="", picture="") => {
     const profiles = getProfiles();
     if( profiles.find((profile) => profile.email == email) === -1) { return false } ;
     const profile = {
-        name: "",
+        name: name,
         name2: "",
-        lastName: "",
+        lastName: lastName,
         lastName2: "",
         email: email,
         telephone: "",
+        picture: picture,
     };
     profiles.push(profile);
     localStorage.setItem("profiles", JSON.stringify(profiles));
@@ -43,9 +44,9 @@ const getProfile = (email) => {
 }
 
 /* Debe existir el perfil que se quiere actualizar */
-const updateProfile = (email, profile) => {
+const updateProfile = (profile) => {
     const profiles = getProfiles();
-    const index = profiles.findIndex((profile) => profile.email === email);
+    const index = profiles.findIndex((profileFromArray) => profileFromArray.email === profile.email);
     if (index !== -1) profiles[index] = profile;
     localStorage.setItem("profiles", JSON.stringify(profiles));
 }

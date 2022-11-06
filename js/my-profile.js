@@ -1,18 +1,8 @@
-const profile = {
-  name: "",
-  name2: "",
-  lastName: "",
-  lastName2: "",
-  email: "",
-  telephone: "",
-  picture: "",
-};
-
-const profiles = getProfiles();
-
+const email = localStorage.getItem("user");
+const profile = getProfile(email);
 
 document.addEventListener("DOMContentLoaded", function (e) {
-  showProfile();
+  showProfile(profile);
 });
 
 
@@ -32,7 +22,17 @@ document.addEventListener("DOMContentLoaded", function (e) {
           event.preventDefault()
           event.stopPropagation()
         } else {
-          updateProfile()
+          const profile = {
+            name: document.getElementById('inputName').value,
+            name2: document.getElementById('inputName2').value,
+            lastName: document.getElementById('inputLastName').value,
+            lastName2: document.getElementById('inputLastName2').value,
+            email: document.getElementById('inputEmail').value,
+            telephone: document.getElementById('inputTelephone').value,
+            picture: "document.getElementById('inputPicture').value",
+          }
+          updateProfile(profile)
+          showProfile(profile)
           event.preventDefault()
           event.stopPropagation()
         }
@@ -45,18 +45,26 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
 
 const updateProfileHTML = () => {
-  profile.name = document.getElementById("inputName").value;
-  profile.name2 = document.getElementById("inputName2").value;
-  profile.lastName = document.getElementById("inputLastName").value;
-  profile.lastName2 = document.getElementById("inputLastName2").value;
-  profile.email = document.getElementById("inputEmail").value;
-  profile.telephone = document.getElementById("inputTelephone").value;
+  const profile = {
+    name: document.getElementById("name").value,
+    name2: document.getElementById("name2").value,
+    lastName: document.getElementById("lastName").value,
+    lastName2: document.getElementById("lastName2").value,
+    email: document.getElementById("email").value,
+    telephone: document.getElementById("telephone").value,
+    picture: document.getElementById("picture").scr,
+  }
+
+  showProfile(profile);
+  updateProfile(profile)
+
 };
 
 
 
-const showProfile = () => {
+const showProfile = (profile) => {
   // en el html
+  if(profile.name) document.getElementById("fullName").innerHTML = profile.name + " " + profile.lastName;
   document.getElementById("name").value = profile.name;
   document.getElementById("name2").value = profile.name2;
   document.getElementById("lastName").value = profile.lastName;

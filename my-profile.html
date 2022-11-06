@@ -85,12 +85,30 @@
                   <img src="img/img_perfil.png" class="img-fluid" alt="Responsive image" />
                 </div>
                 <div class="col-md-8" id="profile">
-                  <h3 id="name">Nombre</h3>
-                  <p id="name2">Segundo Nombre</p>
-                  <p id="lastName">Apellido</p>
-                  <p id="lasName2">Segundo Apellido</p>
-                  <p id="email">E-mail</p>
-                  <p id="telephone">Telefono de Contacto</p>
+                  <h2 class="fw-bold" id="fullName">Nombre de usuario</h2>
+                  <div class="input-group mb-3">
+                    <input id="name" type="text" class="form-control" placeholder="Nombre"
+                      disabled aria-label="Nombre">
+                  </div>
+                  <div class="input-group mb-3">
+                    <input id="name2" type="text" class="form-control" placeholder="Segundo Nombre"
+                      disabled aria-label="Segundo Nombre">
+                  </div>
+                  <div class="input-group mb-3">
+                    <input id="lastName" type="text" class="form-control" placeholder="Apellido" disabled aria-label="Apellido">
+                  </div>
+                  <div class="input-group mb-3">
+
+                    <input id="lastName2" type="text" class="form-control" placeholder="Segundo Apellido"
+                      disabled aria-label="Segundo Apellido">
+                  </div>
+                  <div class="input-group mb-3">
+                    <input id="email" type="text" class="form-control" placeholder="E-mail" disabled aria-label="E-mail" />
+                  </div>
+                  <div class="input-group mb-3">
+                    <input id="telephone" type="tel" class="form-control" placeholder="Telefono" disabled aria-label="Telefono">
+                  </div>
+
                   <!-- Modal trigger button -->
                   <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal"
                     data-bs-target="#editProfile">
@@ -101,7 +119,8 @@
                   <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
                   <div class="modal fade" id="editProfile" tabindex="-1" data-bs-backdrop="static"
                     data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-static" role="document">
+                    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-static"
+                      role="document">
                       <div class="modal-content">
                         <div class="modal-header">
                           <h5 class="modal-title" id="modalTitleId">Editar Perfil</h5>
@@ -184,13 +203,9 @@
     </div>
   </footer>
   <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/profile-manager.js"></script>
   <script src="js/init.js"></script>
   <script src="js/my-profile.js"></script>
-  <!-- Optional: Place to the bottom of scripts -->
-  <script>
-    const myModal = new bootstrap.Modal(document.getElementById('editProfile'), options)
-
-  </script>
 </body>
 
 </html>

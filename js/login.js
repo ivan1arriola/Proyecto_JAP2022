@@ -15,9 +15,14 @@ Array.prototype.slice.call(forms).forEach(function (form) {
       event.preventDefault();
       event.stopPropagation();
       if (form.checkValidity()) {
-        const user = document.getElementById("email").value;
-        createProfile(user);
-        logIn(user);
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        if(isProfileSignedUp(email)) {
+          logIn(email);
+        } else {
+          createProfile(email, "", "", "");
+          
+        }
       }
       form.classList.add("was-validated");
     },
@@ -49,13 +54,14 @@ function decodeJwtResponse(token) {
 globalThis.inicioConGoogle = (response) => {
   const responsePayload = decodeJwtResponse(response.credential);
 
-
   const name = responsePayload.name;
   const lastName = responsePayload.given_name;
   const email = responsePayload.email;
   const picture = responsePayload.picture;
 
+  if(isProfileSignedUp(email)) {
   createProfile(email, name, lastName, picture);
+  }
   logIn(email);
 
 };
