@@ -16,6 +16,7 @@ const USER = localStorage.getItem("user")
 const currenlyPath = window.location.pathname.split("/").pop();
 const loginPath = "login.html";
 
+
 const loginOut = () => {
   localStorage.removeItem("user");
   location.reload();
@@ -27,11 +28,15 @@ const setProdID = (id) => {
 };
 
 document.addEventListener("DOMContentLoaded", function () {
+  const userProfile = getProfile(USER);
   if(currenlyPath === loginPath) {
     return false;
   }
   if (!Boolean(USER) ) {
     window.location = loginPath;
+  }
+  if(Boolean(userProfile.name)) {
+    document.getElementById("user").innerHTML = userProfile.name + " " + userProfile.lastName;
   } else {
     document.getElementById("user").innerHTML = USER;
   }
