@@ -72,7 +72,6 @@ const addToCart = (newArticle) => {
   localStorage.setItem("cart", JSON.stringify(cart));
 };
 
-//-------------------------------------------------------------------
 // Gestion de perfiles de usuario
 /* Este modulo tiene la responsabilidad de manejar los perfiles de usuario */
 
@@ -121,6 +120,12 @@ const getProfile = (email) => {
 
 /* Debe existir el perfil que se quiere actualizar */
 const updateProfile = (profile) => {
+  
+  if(USER !== profile.email) {
+    deleteProfile(USER);
+    localStorage.setItem("user", profile.email);
+    createProfile(profile.email);
+  };
   const profiles = getProfiles();
   const index = profiles.findIndex((profileFromArray) => profileFromArray.email === profile.email);
   if (index !== -1) profiles[index] = profile;
@@ -136,6 +141,7 @@ const deleteProfile = (email) => {
 
 
 
+//-------------------------------------------------------------------
 
 
 let showSpinner = function () {

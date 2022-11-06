@@ -33,8 +33,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
           }
           updateProfile(profile)
           showProfile(profile)
-          event.preventDefault()
-          event.stopPropagation()
         }
 
         form.classList.add('was-validated')
