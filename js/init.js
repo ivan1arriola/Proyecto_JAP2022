@@ -134,7 +134,7 @@ const deleteProfile = (email) => {
   localStorage.setItem("profiles", JSON.stringify(profiles));
 }
 
-console.log("profile.js loaded");
+
 
 
 
@@ -171,3 +171,4 @@ let getJSONData = function (url) {
     });
 };
 
+console.log("init.js loaded");

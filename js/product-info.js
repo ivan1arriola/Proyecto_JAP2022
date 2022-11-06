@@ -195,3 +195,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+console.log("product-info.js loaded");

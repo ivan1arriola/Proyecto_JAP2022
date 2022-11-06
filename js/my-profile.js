@@ -81,3 +81,5 @@ const showProfile = (profile) => {
   document.getElementById("inputTelephone").value = profile.telephone;
 
 };
+
+console.log("my-profile.js loaded");

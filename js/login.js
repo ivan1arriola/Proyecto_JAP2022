@@ -66,3 +66,4 @@ globalThis.inicioConGoogle = (response) => {
 
 };
 
+console.log("login.js loaded");

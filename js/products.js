@@ -132,9 +132,4 @@ const rangeFilterCount = () => {
     search()
 }
 
-
-
-
-
-
-
+console.log("products.js loaded");

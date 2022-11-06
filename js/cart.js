@@ -242,3 +242,5 @@ const showSuccessAlert = () => {
 const hideSuccessAlert = () => {
   document.getElementById("successAlert").classList.add("d-none");
 };
+
+console.log("cart.js loaded");
