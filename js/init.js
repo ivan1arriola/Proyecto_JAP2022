@@ -13,8 +13,8 @@ const DOLAR_API = "https://cotizaciones-brou.herokuapp.com/api/currency/latest";
 
 /* Funciones para manejo de sesión */
 const USER = localStorage.getItem("user")
-const currenlyPath = window.location.pathname;
-const loginPath = "/login.html";
+const currenlyPath = window.location.pathname.split("/").pop();
+const loginPath = "login.html";
 
 const loginOut = () => {
   localStorage.removeItem("user");
