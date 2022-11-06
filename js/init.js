@@ -29,13 +29,13 @@ const setProdID = (id) => {
 
 document.addEventListener("DOMContentLoaded", function () {
   const userProfile = getProfile(USER);
-  if(currenlyPath === loginPath) {
+  if (currenlyPath === loginPath) {
     return false;
   }
-  if (!Boolean(USER) ) {
+  if (!Boolean(USER)) {
     window.location = loginPath;
   }
-  if(Boolean(userProfile.name)) {
+  if (Boolean(userProfile.name)) {
     document.getElementById("user").innerHTML = userProfile.name + " " + userProfile.lastName;
   } else {
     document.getElementById("user").innerHTML = USER;
@@ -69,7 +69,7 @@ const addToCart = (newArticle) => {
   let articleIndex = cart.articles.findIndex(
     (article) => article.id == newArticle.id
   );
-  if (articleIndex < 0) { 
+  if (articleIndex < 0) {
     cart.articles.push(newArticle);
   } else {
     cart.articles[articleIndex].count++;
@@ -78,25 +78,24 @@ const addToCart = (newArticle) => {
 };
 
 // Gestion de perfiles de usuario
-/* Este modulo tiene la responsabilidad de manejar los perfiles de usuario */
+/* Esta parte del codigo tiene la responsabilidad de manejar los perfiles de usuario */
 
 const isProfileSignedUp = (email) => {
   const profiles = getProfiles();
-  const profile = profiles.find((profile) => profile.email == email);
-  return Boolean(profile);
+  return profiles.some((profile) => profile.email == email);
 }
 
-const createProfile = (email, name="", lastName="", picture="") => {
+const createProfile = (email, name = "", lastName = "", picture = "") => {
   const profiles = getProfiles();
-  if( profiles.find((profile) => profile.email == email) === -1) { return false } ;
+  if (profiles.find((profile) => profile.email == email) === -1) { return false };
   const profile = {
-      name: name,
-      name2: "",
-      lastName: lastName,
-      lastName2: "",
-      email: email,
-      telephone: "",
-      picture: picture,
+    name: name,
+    name2: "",
+    lastName: lastName,
+    lastName2: "",
+    email: email,
+    telephone: "",
+    picture: picture,
   };
   profiles.push(profile);
   localStorage.setItem("profiles", JSON.stringify(profiles));
@@ -106,12 +105,12 @@ const createProfile = (email, name="", lastName="", picture="") => {
 const getProfiles = () => {
   let profiles = localStorage.getItem("profiles");
   if (!Boolean(profiles)) {
-      emptyProfiles = [];
-      localStorage.setItem("profiles", JSON.stringify(emptyProfiles));
-      return emptyProfiles;
+    emptyProfiles = [];
+    localStorage.setItem("profiles", JSON.stringify(emptyProfiles));
+    return emptyProfiles;
   } else {
-      profiles = JSON.parse(profiles);
-      return profiles;
+    profiles = JSON.parse(profiles);
+    return profiles;
   }
 }
 
@@ -125,8 +124,8 @@ const getProfile = (email) => {
 
 /* Debe existir el perfil que se quiere actualizar */
 const updateProfile = (profile) => {
-  
-  if(USER !== profile.email) {
+
+  if (USER !== profile.email) {
     deleteProfile(USER);
     localStorage.setItem("user", profile.email);
     createProfile(profile.email);

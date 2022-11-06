@@ -17,11 +17,11 @@ Array.prototype.slice.call(forms).forEach(function (form) {
       if (form.checkValidity()) {
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
-        if(isProfileSignedUp(email)) {
+        if (isProfileSignedUp(email)) {
           logIn(email);
         } else {
           createProfile(email, "", "", "");
-          
+
         }
       }
       form.classList.add("was-validated");
@@ -35,7 +35,13 @@ const logIn = (user) => {
   window.location = INDEX;
 };
 
-/**  https://stackoverflow.com/questions/71686512/gsi-logger-the-value-of-callback-is-not-a-function-configuration-ignored */
+
+// Inicio de sesion con Google
+
+/**  
+ * Obtuve este JWT decoder de 
+ * https://stackoverflow.com/questions/71686512/gsi-logger-the-value-of-callback-is-not-a-function-configuration-ignored 
+ */
 function decodeJwtResponse(token) {
   let base64Url = token.split(".")[1];
   let base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
@@ -52,15 +58,15 @@ function decodeJwtResponse(token) {
 
 
 globalThis.inicioConGoogle = (response) => {
-  const responsePayload = decodeJwtResponse(response.credential);
+  const googleProfile = decodeJwtResponse(response.credential);
 
-  const name = responsePayload.name;
-  const lastName = responsePayload.given_name;
-  const email = responsePayload.email;
-  const picture = responsePayload.picture;
+  const name = googleProfile.name;
+  const lastName = googleProfile.given_name;
+  const email = googleProfile.email;
+  const picture = googleProfile.picture;
 
-  if(isProfileSignedUp(email)) {
-  createProfile(email, name, lastName, picture);
+  if (!isProfileSignedUp(email)) {
+    createProfile(email, name, lastName, picture);
   }
   logIn(email);
 
