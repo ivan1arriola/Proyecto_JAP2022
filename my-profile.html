@@ -87,32 +87,61 @@
                   </div>
                 </div>
                 <div class="col-md-8" id="profile">
-                  <h2 class="fw-bold" id="fullName">Nombre de usuario</h2>
-                  <div class="input-group mb-3">
-                    <input id="name" type="text" class="form-control" placeholder="Nombre"
-                      disabled aria-label="Nombre">
+                  <div class="row text-center">
+                    <div class="col-md-12">
+                      <h2 class="fw-bold" id="fullName"></h2>
+                    </div>
                   </div>
-                  <div class="input-group mb-3">
-                    <input id="name2" type="text" class="form-control" placeholder="Segundo Nombre"
-                      disabled aria-label="Segundo Nombre">
+                  <div class="row mt-3 align-middle">
+                    <div class="col-md">
+                      <p class="fw-bold"> Nombre </p>
+                    </div>
+                    <div class="col-md-10">
+                      <input type="text" class="form-control" id="name" placeholder="Nombre" value="" disabled/>
+                    </div>
                   </div>
-                  <div class="input-group mb-3">
-                    <input id="lastName" type="text" class="form-control" placeholder="Apellido" disabled aria-label="Apellido">
+                  <div class="row mt-3 align-middle">
+                    <div class="col-md">
+                      <p class="fw-bold"> Segundo Nombre </p>
+                    </div>
+                    <div class="col-md-10">
+                      <input type="text" class="form-control" id="name2" placeholder="Segundo Nombre" value="" disabled/>
+                    </div>
                   </div>
-                  <div class="input-group mb-3">
-
-                    <input id="lastName2" type="text" class="form-control" placeholder="Segundo Apellido"
-                      disabled aria-label="Segundo Apellido">
+                  <div class="row mt-3 align-middle">
+                    <div class="col-md">
+                      <p class="fw-bold"> Apellido </p>
+                    </div>
+                    <div class="col-md-10">
+                      <input type="text" class="form-control" id="lastName" placeholder="Apellido" value="" disabled/>
+                    </div>
                   </div>
-                  <div class="input-group mb-3">
-                    <input id="email" type="text" class="form-control" placeholder="E-mail" disabled aria-label="E-mail" />
+                  <div class="row mt-3 align-middle">
+                    <div class="col-md">
+                      <p class="fw-bold"> Segundo Apellido </p>
+                    </div>
+                    <div class="col-md-10">
+                      <input type="text" class="form-control" id="lastName2" placeholder="Segundo Apellido" value="" disabled/>
+                    </div>
                   </div>
-                  <div class="input-group mb-3">
-                    <input id="telephone" type="tel" class="form-control" placeholder="Telefono" disabled aria-label="Telefono">
+                  <div class="row mt-3 align-middle">
+                    <div class="col-md">
+                      <p class="fw-bold"> E-Mail </p>
+                    </div>
+                    <div class="col-md-10">
+                      <input type="email" class="form-control" id="email" placeholder="E-Mail" value="" disabled/>
+                    </div>
                   </div>
-
+                  <div class="row mt-3 align-middle">
+                    <div class="col-md">
+                      <p class="fw-bold"> Telefono de Contacto </p>
+                    </div>
+                    <div class="col-md-10">
+                      <input type="tel" class="form-control" id="telephone" placeholder="Telefono de Contacto" value="" disabled/>
+                    </div>
+                  </div>
                   <!-- Modal trigger button -->
-                  <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal"
+                  <button type="button" class="btn btn-primary btn-lg mt-3" data-bs-toggle="modal"
                     data-bs-target="#editProfile">
                     Editar Perfil
                   </button>
@@ -157,16 +186,24 @@
                               <div class="mb-3">
                                 <label for="inputEmail" class="form-label fw-bold">E-mail</label>
                                 <input type="email" id="inputEmail" class="form-control" placeholder="Ingrese su e-mail"
-                                  required >
-                                  <div id="invalidEmail" class="invalid-feedback">
-                                    Formato de e-mail incorrecto
-                                  </div>
+                                  required>
+                                <div id="invalidEmail" class="invalid-feedback">
+                                  Formato de e-mail incorrecto
+                                </div>
                               </div>
                               <div class="mb-3">
                                 <label for="inputTelephone" class="form-label">Telefono de Contacto</label>
                                 <input type="tel" id="inputTelephone" class="form-control"
                                   placeholder="Ingrese su telefono">
                               </div>
+                              <div class="mb-3">
+                                <label for="Image" class="form-label">Imagen de perfil</label>
+                                <input class="form-control" type="file" id="inputPicture" onchange="preview()">
+                              </div>
+                              <div class="mb-3 text-center">
+                                <img id="picturePreview" src="/img/img_perfil.png" class="img-fluid" width="200" />
+                              </div>
+
 
                               <small>Los campos con negritas son <b>obligatorios</b></small>
 
