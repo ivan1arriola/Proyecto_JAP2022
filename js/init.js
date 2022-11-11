@@ -35,10 +35,15 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!Boolean(USER)) {
     window.location = loginPath;
   }
-  if (Boolean(userProfile.name)) {
-    document.getElementById("user").innerHTML = userProfile.name + " " + userProfile.lastName;
+  if (Boolean(userProfile.picture && userProfile.picture !== "")) {
+    document.getElementById("user").innerHTML = `<img src="${userProfile.picture}" alt="user" class="rounded-circle me-2" width="20px" height="20px">`;
   } else {
-    document.getElementById("user").innerHTML = USER;
+    document.getElementById("user").innerHTML = `<img src="../img/img_perfil.png" alt="user" class="rounded-circle me-2" width="20px" height="20px">`;
+  }
+  if (Boolean(userProfile.name && userProfile.lastName)) {
+    document.getElementById("user").innerHTML += userProfile.name + " " + userProfile.lastName;
+  } else {
+    document.getElementById("user").innerHTML += USER;
   }
 });
 
@@ -77,8 +82,8 @@ const addToCart = (newArticle) => {
   localStorage.setItem("cart", JSON.stringify(cart));
 };
 
-// Gestion de perfiles de usuario
-/* Esta parte del codigo tiene la responsabilidad de manejar los perfiles de usuario */
+// Gestión de perfiles de usuario
+/* Esta parte del código tiene la responsabilidad de manejar los perfiles de usuario */
 
 const isProfileSignedUp = (email) => {
   const profiles = getProfiles();
