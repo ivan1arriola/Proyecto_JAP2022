@@ -5,6 +5,36 @@ document.addEventListener("DOMContentLoaded", function (e) {
   showProfile(profile);
 });
 
+/** Habilitar los inputs para la edición */
+const enableEdit = () => {
+  const inputs = Array.prototype.slice.call(document.getElementsByTagName("input")) 
+  inputs.forEach((input) => {
+    input.disabled = false;
+  });
+  document.getElementById("btnEdit").style.display = "none";
+  document.getElementById("btnSave").disabled = false;
+  document.getElementById("btnSave").style.display = "inline-block";
+  document.getElementById("btnCancel").style.display = "inline-block";
+  document.getElementById("btnCancel").disabled = false;
+};
+
+/** Deshabilitar los inputs para la edición */
+const disableEdit = () => {
+  const inputs = Array.prototype.slice.call(document.getElementsByTagName("input"))
+  inputs.forEach((input) => {
+    input.disabled = true;
+  });
+  document.getElementById("btnEdit").style.display = "inline-block";
+  document.getElementById("btnSave").style.display = "none";
+  document.getElementById("btnCancel").style.display = "none";
+};
+
+/** Cancelar la edición */
+const cancelChanges = () => {
+  disableEdit();
+  showProfile(profile);
+};
+
 
 /** Chequea si el email no está repetido */ 
 const validateEmail = () => {
@@ -31,7 +61,7 @@ const validateEmail = () => {
   }
 };
 
-
+/** Guarda los cambios realizados en el perfil  si pasan la validación*/
 (function () {
   'use strict'
 
@@ -44,20 +74,19 @@ const validateEmail = () => {
       form.addEventListener('submit', function (event) {
         validateEmail();
         document.getElementById("invalidEmail").addEventListener("input", () => { console.log("input") });
-        if (!form.checkValidity()) {
-          event.preventDefault()
-          event.stopPropagation()
-        } else {
+        if (form.checkValidity()) {
           updateProfileHTML();
+          disableEdit();
         }
-
+        event.preventDefault()
+        event.stopPropagation()
         form.classList.add('was-validated')
       }, false)
     })
 })()
 
 
-/** Actualiza el perfil usando los datos del modal */
+/** Actualiza el perfil **/
 const updateProfileHTML = () => {
   const profileHTML = {
     name: document.getElementById("inputName").value,
@@ -68,7 +97,6 @@ const updateProfileHTML = () => {
     telephone: document.getElementById("inputTelephone").value,
     picture: document.getElementById("picturePreview").src,
   }
-  console.log(profileHTML)
   updateProfile(profileHTML)
   showProfile(profileHTML);
 };
@@ -77,24 +105,13 @@ const updateProfileHTML = () => {
 /** Despliega la informacion del perfil del usuario en la pagina y en el modal de edicion */
 const showProfile = (profile) => {
 
-  // en el html
-  if (profile.name) document.getElementById("fullName").innerHTML = profile.name + " " + profile.lastName;
-  document.getElementById("name").value = profile.name;
-  document.getElementById("name2").value = profile.name2;
-  document.getElementById("lastName").value = profile.lastName;
-  document.getElementById("lastName2").value = profile.lastName2;
-  document.getElementById("email").value = profile.email;
-  document.getElementById("telephone").value = profile.telephone;
-  if (profile.picture) document.getElementById("picture").style.backgroundImage = `url(${profile.picture})` ;
-
-  // en el modal
   document.getElementById("inputName").value = profile.name;
   document.getElementById("inputName2").value = profile.name2;
   document.getElementById("inputLastName").value = profile.lastName;
   document.getElementById("inputLastName2").value = profile.lastName2;
   document.getElementById("inputEmail").value = profile.email;
   document.getElementById("inputTelephone").value = profile.telephone;
-  document.getElementById("telephone").value = profile.telephone;
+  document.getElementById("inputTelephone").value = profile.telephone;
   if (profile.picture) document.getElementById("picturePreview").src = profile.picture;
 
 };

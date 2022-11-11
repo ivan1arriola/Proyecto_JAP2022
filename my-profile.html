@@ -71,162 +71,83 @@
   <main>
     <div class="container">
       <div class="row">
-        <div class="col-md-12">
-          <h1 class="text-center">Mi perfil</h1>
+        <div class="col-12">
+          <h1 class="text-center mt-5">Mi perfil</h1>
         </div>
       </div>
-
       <div class="row">
-        <div class="col-md-12">
-          <div class="card">
-            <div class="card-body">
-              <div class="row">
-                <div class="col-md-4" id="imageUrl">
-                  <div id="picture" class="profile-picture">
-                    <!-- Aqui va la imagen como fondo del DIV-->
+        <div class="col-12">
+          <div class="card mt-5">
+            <div id="datos-box" class="card-body">
+              <h5 class="card-title fw-bold text-center">Datos personales</h5>
+              <form class="row needs-validation" novalidate>
+                <div class="mb-3 col-12 text-lg-center">
+                  <img id="picturePreview" src="/img/img_perfil.png"
+                    class="img-fluid img-thumbnail rounded-circle mx-auto d-block" width="200" />
+                </div>
+                <div class="mb-3 col-12 col-sm-6">
+                  <label for="inputName" class="form-label fw-bold">Nombre</label>
+                  <input type="text" id="inputName" name="name" class="form-control" placeholder="Ingrese su nombre"
+                    required disabled>
+                  <div class="invalid-feedback">
+                    No puede dejar este campo vacío
                   </div>
                 </div>
-                <div class="col-md-8" id="profile">
-                  <div class="row text-center">
-                    <div class="col-md-12">
-                      <h2 class="fw-bold" id="fullName"></h2>
-                    </div>
-                  </div>
-                  <div class="row mt-3 align-middle">
-                    <div class="col-md">
-                      <p class="fw-bold"> Nombre </p>
-                    </div>
-                    <div class="col-md-10">
-                      <input type="text" class="form-control" id="name" placeholder="Nombre" value="" disabled/>
-                    </div>
-                  </div>
-                  <div class="row mt-3 align-middle">
-                    <div class="col-md">
-                      <p class="fw-bold"> Segundo Nombre </p>
-                    </div>
-                    <div class="col-md-10">
-                      <input type="text" class="form-control" id="name2" placeholder="Segundo Nombre" value="" disabled/>
-                    </div>
-                  </div>
-                  <div class="row mt-3 align-middle">
-                    <div class="col-md">
-                      <p class="fw-bold"> Apellido </p>
-                    </div>
-                    <div class="col-md-10">
-                      <input type="text" class="form-control" id="lastName" placeholder="Apellido" value="" disabled/>
-                    </div>
-                  </div>
-                  <div class="row mt-3 align-middle">
-                    <div class="col-md">
-                      <p class="fw-bold"> Segundo Apellido </p>
-                    </div>
-                    <div class="col-md-10">
-                      <input type="text" class="form-control" id="lastName2" placeholder="Segundo Apellido" value="" disabled/>
-                    </div>
-                  </div>
-                  <div class="row mt-3 align-middle">
-                    <div class="col-md">
-                      <p class="fw-bold"> E-Mail </p>
-                    </div>
-                    <div class="col-md-10">
-                      <input type="email" class="form-control" id="email" placeholder="E-Mail" value="" disabled/>
-                    </div>
-                  </div>
-                  <div class="row mt-3 align-middle">
-                    <div class="col-md">
-                      <p class="fw-bold"> Telefono de Contacto </p>
-                    </div>
-                    <div class="col-md-10">
-                      <input type="tel" class="form-control" id="telephone" placeholder="Telefono de Contacto" value="" disabled/>
-                    </div>
-                  </div>
-                  <!-- Modal trigger button -->
-                  <button type="button" class="btn btn-primary btn-lg mt-3" data-bs-toggle="modal"
-                    data-bs-target="#editProfile">
-                    Editar Perfil
-                  </button>
-
-                  <!-- Modal Body -->
-                  <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
-                  <div class="modal fade" id="editProfile" tabindex="-1" data-bs-backdrop="static"
-                    data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-static"
-                      role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="modalTitleId">Editar Perfil</h5>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                          <form class="needs-validation" novalidate>
-
-
-                            <!--Aqui empieza el contenido del modal-->
-                            <div>
-                              <div class="mb-3">
-                                <label for="inputName" class="form-label fw-bold">Nombre</label>
-                                <input type="text" id="inputName" class="form-control" placeholder="Ingrese su nombre"
-                                  required>
-                              </div>
-                              <div class="mb-3">
-                                <label for="inputName2" class="form-label">Segundo Nombre</label>
-                                <input type="text" id="inputName2" class="form-control"
-                                  placeholder="Ingrese su segundo nombre">
-                              </div>
-                              <div class="mb-3">
-                                <label for="inputLastName" class="form-label fw-bold">Apellido</label>
-                                <input type="text" id="inputLastName" class="form-control"
-                                  placeholder="Ingrese su apellido" required>
-                              </div>
-                              <div class="mb-3">
-                                <label for="inputLastName2" class="form-label">Segundo Apellido</label>
-                                <input type="text" id="inputLastName2" class="form-control"
-                                  placeholder="Ingrese segundo apellido">
-                              </div>
-                              <div class="mb-3">
-                                <label for="inputEmail" class="form-label fw-bold">E-mail</label>
-                                <input type="email" id="inputEmail" class="form-control" placeholder="Ingrese su e-mail"
-                                  required>
-                                <div id="invalidEmail" class="invalid-feedback">
-                                  Formato de e-mail incorrecto
-                                </div>
-                              </div>
-                              <div class="mb-3">
-                                <label for="inputTelephone" class="form-label">Telefono de Contacto</label>
-                                <input type="tel" id="inputTelephone" class="form-control"
-                                  placeholder="Ingrese su telefono">
-                              </div>
-                              <div class="mb-3">
-                                <label for="Image" class="form-label">Imagen de perfil</label>
-                                <input class="form-control" type="file" id="inputPicture" onchange="preview()">
-                              </div>
-                              <div class="mb-3 text-center">
-                                <img id="picturePreview" src="/img/img_perfil.png" class="img-fluid" width="200" />
-                              </div>
-
-
-                              <small>Los campos con negritas son <b>obligatorios</b></small>
-
-                            </div>
-
-                            <!--Aqui termina el contenido del modal-->
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Descartar</button>
-                              <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-                            </div>
-                          </form>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
+                <div class="mb-3 col-12 col-sm-6">
+                  <label for="inputName2" class="form-label">Segundo Nombre</label>
+                  <input type="text" id="inputName2" class="form-control" name="name2"
+                    placeholder="Ingrese su segundo nombre" disabled>
                 </div>
-              </div>
+                <div class="mb-3 col-12 col-sm-6">
+                  <label for="inputLastName" class="form-label fw-bold">Apellido</label>
+                  <input type="text" id="inputLastName" class="form-control" name="lastName"
+                    placeholder="Ingrese su apellido" required disabled>
+                  <div class="invalid-feedback">
+                    No puede dejar este campo vacío
+                  </div>
+                </div>
+                <div class="mb-3 col-12 col-sm-6">
+                  <label for="inputLastName2" class="form-label">Segundo Apellido</label>
+                  <input type="text" id="inputLastName2" class="form-control" name="lastName2"
+                    placeholder="Ingrese segundo apellido" disabled>
+                </div>
+                <div class="mb-3 col-12 col-sm-6">
+                  <label for="inputEmail" class="form-label fw-bold">E-mail</label>
+                  <input type="email" id="inputEmail" class="form-control" placeholder="Ingrese su e-mail" name="email"
+                    required disabled>
+                  <div id="invalidEmail" class="invalid-feedback">
+                    Formato de e-mail incorrecto
+                  </div>
+                </div>
+                <div class="mb-3 col-12 col-sm-6">
+                  <label for="inputTelephone" class="form-label">Telefono de Contacto</label>
+                  <input type="tel" id="inputTelephone" class="form-control" name="telephone"
+                    placeholder="Ingrese su telefono" disabled>
+                </div>
+                <div class="mb-3 col-12 col-sm-6">
+                  <label for="Image" class="form-label">Imagen de perfil</label>
+                  <input class="form-control" type="file" id="inputPicture" name="picture" onchange="preview()"
+                    disabled>
+                </div>
+
+                <div>
+                  <button id="btnEdit" type="button" class="btn btn-primary" onclick="enableEdit()">Editar
+                    Perfil</button>
+                  <button id="btnSave" type="submit" class="btn btn-success" disabled>Guardar</button>
+                  <button id="btnCancel" type="button" class="btn btn-secondary" onclick="cancelChanges()"
+                    disabled>Cancelar</button>
+                </div>
+
+
+
+                <small>Los campos con negritas son <b>obligatorios</b></small>
+
+              </form>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
+
+
+
   </main>
   <footer class="text-muted">
     <div class="container">
