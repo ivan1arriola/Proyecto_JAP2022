@@ -63,7 +63,7 @@ const showCart = () => {
                         <h4 class="mb-1 fw-bold">${name}</h4>
                         <p class="mb-1">Costo por unidad : ${costToHTML(currency, unitCost)}</p> 
                         <div class="input-group mb-3">
-                            <button id="subtract" ${disabled} class="btn btn-outline-secondary" type="button" onclick="countBtn(false, ${id}, ${unitCost}, '${currency}', true)">-</button>
+                            <button id="subtract${id}" ${disabled} class="btn btn-outline-secondary" type="button" onclick="countBtn(false, ${id}, ${unitCost}, '${currency}', true)">-</button>
                             <input type="number" class="form-control text-center" id="count${id}" value="${count}" min="1" required oninput="this.value = parseInt(this.value);" onchange="submitCount(${id})">
                             <button id="add" class="btn btn-outline-secondary" type="button" onclick="countBtn(true, ${id}, ${unitCost}, '${currency}', true)">+</button>
                             <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" type="button" onclick="showDeleteModal(${id})">
@@ -93,9 +93,9 @@ const submitCount = (id) => {
     document.getElementById("count" + id).value = 1;
   }
   if (count == 1) {
-    document.getElementById("subtract").disabled = true;
+    document.getElementById("subtract"+ id).disabled = true;
   } else {
-    document.getElementById("subtract").disabled = false;
+    document.getElementById("subtract"+ id).disabled = false;
   }
   updateProductCount(id);
   showCost();
