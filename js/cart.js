@@ -26,32 +26,33 @@ document.addEventListener("DOMContentLoaded", () => {
   getJSONData(DOLAR_API).then(function (value) {
     if (value.status === "ok") {
       dolarValue = value.data.rates.USD.sell;
-      getTotalCost();
+      showCost();
     }
   });
 });
 
 // Funciones para mostrar carrito de compras
 
+/* Transforma un tipo de moneda y un costo en HTML */
 const costToHTML = (currency, cost, bold = false) => {
   let costFixed = parseFloat(cost.toFixed(2));
   let costString = costFixed.toLocaleString("es-UY");
   let costArray = costString.split(",");
   let costHTML = `
   <div class="${bold ? "fw-bold" : ""}">
-    <span>${currency + " $ "}</span><span class="currency">${
-    costArray[0]
-  }</span><span class="dot">.</span><span class="decimals">${
-    costArray[1] ? costArray[1] : "00"
-  }</span>
+    <span>${currency + " $ "}</span><span class="currency">${costArray[0]
+    }</span><span class="dot">.</span><span class="decimals">${costArray[1] ? costArray[1] : "00"
+    }</span>
   </div>`;
   return costHTML;
 };
 
+/* Muestra en el HTML los productos del carrito */
 const showCart = () => {
   let cartHTML = ``;
   currentCart.articles.forEach((product) => {
     const { id, name, count, unitCost, currency, image } = product;
+    let disabled = count == 1 ? "disabled" : "";
     cartHTML += `
             <div class="list-group-item cart-product">
                 <div class="row text-center ">
@@ -60,14 +61,11 @@ const showCart = () => {
                     </div>
                     <div class="col">
                         <h4 class="mb-1 fw-bold">${name}</h4>
-                        <p class="mb-1">Costo por unidad : ${costToHTML(
-                          currency,
-                          unitCost
-                        )}</p> 
+                        <p class="mb-1">Costo por unidad : ${costToHTML(currency, unitCost)}</p> 
                         <div class="input-group mb-3">
-                            <button class="btn btn-outline-secondary" type="button" onclick="countBtn(false, ${id}, ${unitCost}, '${currency}', true)">-</button>
-                            <input type="number" class="form-control text-center" id="count${id}" value="${count}" min="1" required oninput="this.value = parseInt(this.value);" onchange="subtotal('${currency}', ${id}, ${unitCost})">
-                            <button class="btn btn-outline-secondary" type="button" onclick="countBtn(true, ${id}, ${unitCost}, '${currency}', true)">+</button>
+                            <button id="subtract" ${disabled} class="btn btn-outline-secondary" type="button" onclick="countBtn(false, ${id}, ${unitCost}, '${currency}', true)">-</button>
+                            <input type="number" class="form-control text-center" id="count${id}" value="${count}" min="1" required oninput="this.value = parseInt(this.value);" onchange="submitCount(${id})">
+                            <button id="add" class="btn btn-outline-secondary" type="button" onclick="countBtn(true, ${id}, ${unitCost}, '${currency}', true)">+</button>
                             <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" type="button" onclick="showDeleteModal(${id})">
                                 <i class="fas fa-trash-alt"></i>
                             </button>
@@ -87,23 +85,41 @@ const showCart = () => {
   document.getElementById("list").innerHTML = cartHTML;
 };
 
-const subtotal = (currency, id, unitCost, bool = false) => {
-  let amount = document.getElementById("count" + id).value;
-  if (amount < 0) {
-    amount = 0;
-    document.getElementById("count" + id).value = 0;
+/** Función que gestiona el cambio de cantidad de productos en el carrito */
+const submitCount = (id) => {
+  let count = document.getElementById("count" + id).value;
+  if (count < 1) {
+    count = 1;
+    document.getElementById("count" + id).value = 1;
   }
-  const subtotal = document.getElementById("subtotal" + id);
-  subtotal.innerHTML = costToHTML(currency, amount * unitCost, bool);
-  currentCart.articles.find((prod) => prod.id == id).count = amount;
-  localStorage.setItem("cart", JSON.stringify(currentCart));
-  getTotalCost();
+  if (count == 1) {
+    document.getElementById("subtract").disabled = true;
+  } else {
+    document.getElementById("subtract").disabled = false;
+  }
+  updateProductCount(id);
+  showCost();
 };
 
-const getTotalCost = () => {
+/** Actualiza en el HTML el subtotal del producto ID */
+const updateSubtotalProductCost = (id) => {
+  const { count, unitCost, currency } = currentCart.articles.find((prod) => prod.id == id)
+  const subtotalDiv = document.getElementById("subtotal" + id);
+  subtotalDiv.innerHTML = costToHTML(currency, count * unitCost, true);
+};
+
+/** Actualiza en localStorage la cantidad de productos ID */
+const updateProductCount = (id) => {
+  let count = document.getElementById("count" + id).value;
+  currentCart.articles.find((prod) => prod.id == id).count = count;
+  localStorage.setItem("cart", JSON.stringify(currentCart));
+  updateSubtotalProductCost(id);
+};
+
+/** Obtiene el subtotal de todo el carrito */
+const getSubtotalCartCost = () => {
   let dolarCost = 0;
   let pesoCost = 0;
-
   currentCart.articles.forEach(({ count, unitCost, currency }) => {
     if (currency == "UYU") {
       pesoCost += count * unitCost;
@@ -111,38 +127,56 @@ const getTotalCost = () => {
       dolarCost += count * unitCost;
     }
   });
+  return (pesoCost / dolarValue) + dolarCost;
+};
 
-  const subtotalCost = (pesoCost / dolarValue) + dolarCost;
-  const shippingMethod = document.querySelector(
+/** Obtiene el costo de envio */
+const getShippingCost = () => {
+  let subtotal = getSubtotalCartCost();
+  const shippingOption = document.querySelector(
     'input[name="shippingOption"]:checked'
   ).value;
-  const shippingCost = subtotalCost * shippingMethod;
-  const total = subtotalCost + shippingCost;
+  return shippingOption * subtotal;
+};
 
+/** Obtiene el costo total */
+const getFinalCost = () => {
+  let subtotal = getSubtotalCartCost();
+  let shippingCost = getShippingCost();
+  return subtotal + shippingCost;
+};
+
+/** Muestra en el HTML los costos subtotal, de envio y total del carrito */
+const showCost = () => {
   document.getElementById("dolar").innerHTML = dolarValue;
+
   document.getElementById("subtotalCost").innerHTML = costToHTML(
     "USA",
-    subtotalCost
+    getSubtotalCartCost()
   );
   document.getElementById("shippingCost").innerHTML = costToHTML(
     "USA",
-    shippingCost
+    getShippingCost()
   );
-  document.getElementById("total").innerHTML = costToHTML("USA", total);
+  document.getElementById("total").innerHTML = costToHTML(
+    "USA", 
+    getFinalCost()
+  );
 };
 
-const countBtn = (add, id, unitCost, currency, bool = false) => {
-  let amount = document.getElementById("count" + id).value;
-  add ? amount++ : amount--;
-  if (amount < 1) {
-    amount = 1;
-  }
-  document.getElementById("count" + id).value = amount;
-  subtotal(currency, id, unitCost, bool);
+/** Suma (o resta) en 1 la cantidad de producto "id" del carrito*/
+const countBtn = (add, id) => {
+  let count = document.getElementById("count" + id)
+  add ? count.value++ : count.value--;
+  if (count.value < 1) count.value = 1;
+  submitCount(id);
 };
+
+
 
 // Funciones para mostrar el modal para eliminar un producto del carrito
 
+/** Función para mostrar el modal de eliminar producto */
 const showDeleteModal = (itemID) => {
   let itemIndex = currentCart.articles.findIndex((item) => item.id == itemID);
   let item = currentCart.articles[itemIndex];
@@ -153,10 +187,11 @@ const showDeleteModal = (itemID) => {
   document.getElementById("deleteModalBtn").onclick = () => {
     deleteFromCart(itemID);
     showCart();
-    getTotalCost();
+    showCost();
   };
 };
 
+/** Función para eliminar un producto del carrito */
 const deleteFromCart = (itemID) => {
   let itemIndex = currentCart.articles.findIndex((item) => item.id == itemID);
   currentCart.articles.splice(itemIndex, 1);
@@ -175,6 +210,7 @@ const validationPayMethod = () => {
   }
 };
 
+/** Función para habilitar el fomulario seleccionado en el metodo de pago */
 const seleccionarPago = (pago = "none") => {
   const tarjeta = document.getElementById("tarjeta");
   const transferencia = document.getElementById("transferencia");
@@ -194,6 +230,7 @@ const seleccionarPago = (pago = "none") => {
   }
 };
 
+/** Habilita o deshabilita los campos de un formulario */
 const enableForm = (form, bool) => {
   form.querySelectorAll("input").forEach((input) => {
     input.disabled = !bool;
@@ -202,33 +239,32 @@ const enableForm = (form, bool) => {
   });
 };
 
+/** Agrega un listener a cada opcion de pago para que al seleccionarla se haga la validacion correspondiente */
 function addValidationPayMethod() {
   const payMethodOptions = document.getElementsByName("payMethod");
-  let payMethodSelected = false;
   payMethodOptions.forEach((option) => {
     option.addEventListener("click", () => {
-      payMethodSelected = true;
       validationPayMethod();
     });
   });
 }
 
+/** EventListener para validar el formulario de envío */
 Array.prototype.slice.call(forms).forEach(function (form) {
-  form.addEventListener(
-    "submit",
-    function (event) {
-      validationPayMethod();
-      addValidationPayMethod();
+  form.addEventListener("submit", function (event) {
 
-      if (!form.checkValidity()) {
-        event.preventDefault();
-        event.stopPropagation();
-      } else {
-        event.preventDefault();
-        showSuccessAlert();
-      }
-      form.classList.add("was-validated");
-    },
+    validationPayMethod();
+    addValidationPayMethod();
+
+    if (!form.checkValidity()) {
+      event.preventDefault();
+      event.stopPropagation();
+    } else {
+      event.preventDefault();
+      showSuccessAlert();
+    }
+    form.classList.add("was-validated");
+  },
     false
   );
 });

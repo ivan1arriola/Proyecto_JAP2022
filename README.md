@@ -36,8 +36,3 @@ En esta key se almacena el email del usuario que este con la sesión activa.
 En caso de no haber usuario con la sesion activa, se redirigira automaticamente a la pagina de login.
 
 Tambien se puede loguear utilizando una cuenta de Google
-
-## Gestion de Carrito
-Carrito
-
-##
