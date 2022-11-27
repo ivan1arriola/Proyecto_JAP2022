@@ -1,11 +1,18 @@
-const CATEGORIES_URL = "https://japceibal.github.io/emercado-api/cats/cat.json";
-const PUBLISH_PRODUCT_URL = "https://japceibal.github.io/emercado-api/sell/publish.json";
-const PRODUCTS_URL = "https://japceibal.github.io/emercado-api/cats_products/";
-const PRODUCT_INFO_URL = "https://japceibal.github.io/emercado-api/products/";
-const PRODUCT_INFO_COMMENTS_URL = "https://japceibal.github.io/emercado-api/products_comments/";
-const CART_INFO_URL = "https://japceibal.github.io/emercado-api/user_cart/";
-const CART_BUY_URL = "https://japceibal.github.io/emercado-api/cart/buy.json";
-const EXT_TYPE = ".json";
+//const host = "https://japceibal.github.io/emercado-api/";
+const host = "https://entrega08.azurewebsites.net/";
+
+const CATEGORIES_URL = host + "cats";
+const PUBLISH_PRODUCT_URL = host + "sell";
+const PRODUCTS_URL = host + "cats_products/";
+const PRODUCT_INFO_URL = host + "products/";
+const PRODUCT_INFO_COMMENTS_URL = host + "products_comments/";
+const CART_INFO_URL = host + "user_cart/";
+const CART_BUY_URL = host + "cart";
+
+const USER_PROFILE_URL = host + "user_profile/";
+
+//const EXT_TYPE = ".json";
+const EXT_TYPE = "";
 
 /** Api de cotización de dólares sacada de  */
 const DOLAR_API = "https://cotizaciones-brou.herokuapp.com/api/currency/latest";

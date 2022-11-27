@@ -129,36 +129,3 @@ const preview = () => {
 
 
 console.log("my-profile.js loaded");
-
-
-// Funciones para testear
-
-
-const test_profiles = [{
-  name: "Juan",
-  name2: "Pablo",
-  lastName: "Perez",
-  lastName2: "Gonzalez",
-  email: "juan" + Math.random() + "@gmail.com",
-  telephone: "123456789",
-  picture: "https://picsum.photos/200/300",
-},{
-  name: "Maria",
-  name2: "Jose",
-  lastName: "Gonzalez",
-  lastName2: "Perez",
-  email: "maria" + Math.random() + "@outlook.com",
-  telephone: "123456789",
-  picture: "https://picsum.photos/200/300",
-}];
-
-function setTestProfile(number) {
-  let testProfile = test_profiles[number];
-  localStorage.setItem("user", testProfile.email);
-  localStorage.setItem("profiles", JSON.stringify(test_profiles));
-  showProfile(testProfile);
-}
-
-function deleteLocalStorage() {
-  localStorage.clear();
-}
