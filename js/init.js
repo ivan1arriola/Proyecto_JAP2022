@@ -1,5 +1,5 @@
 //const host = "https://japceibal.github.io/emercado-api/";
-const host = "https://entrega08.azurewebsites.net/";
+const host = "https://proyectojap-90e389a055e0.herokuapp.com/";
 
 const CATEGORIES_URL = host + "cats";
 const PUBLISH_PRODUCT_URL = host + "sell";
