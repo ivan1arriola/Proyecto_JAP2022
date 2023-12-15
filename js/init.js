@@ -1,5 +1,5 @@
 //const host = "https://japceibal.github.io/emercado-api/";
-const host = "http://floreria.ivan1arriola.me:9128/";
+const host = "https://japbackend.azurewebsites.net/";
 
 const CATEGORIES_URL = host + "cats";
 const PUBLISH_PRODUCT_URL = host + "sell";
